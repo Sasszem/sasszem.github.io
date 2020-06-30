@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# Baráth László 
+(alias Sasszem)
 
-You can use the [editor on GitHub](https://github.com/Sasszem/sasszem.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Üdv a személyes oldalamon!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Ezt az oldalt azért dobtam össze gyorsan, hogy valahol dokumentálni tudjam a saját kis projektjeimet.
 
-### Markdown
+## Gyors linkek
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- [CV](CV.md)
+- [elektrós projektek](elektro.md)
+- [programozós projektek](prog.md)
 
-```markdown
-Syntax highlighted code block
+## Magamról
 
-# Header 1
-## Header 2
-### Header 3
+A nevem Baráth László, 19 éves vagyok ezen sorok írásakor. Érdekel a programozás és az elektronika, és a BME-VIK-re jelentkeztem villamosmérnök szakra, amit idén (2020) fogok kezdeni.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Sasszem/sasszem.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Az érdeklődési köröm talán túlzottan széles, minden érdekel mind a programozás, mind az elektronika terén, így egy kicsit sok félbehagyott projektem van, de azért akad egy-két elkészült is...
