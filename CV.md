@@ -10,8 +10,8 @@
 ## Eredmények
 
 - Informatika OKTV II. kategória (programozás) országos 42. (2019), majd 29. (2020) helyezés
-- Fizika OKTV I. kategóra országos 24. (2019), majd II. kategória országos 12. (2020) helyezés
-- Gábor Dénes Számítástechnikai Emlékverseny programozók kategóra országos I. helyezés (2017/18)
+- Fizika OKTV I. kategória országos 24. (2019), majd II. kategória országos 12. (2020) helyezés
+- Gábor Dénes Számítástechnikai Emlékverseny programozók kategória országos I. helyezés (2017/18)
 - Pro Talento díj
 
 ## Munkatapasztalat
@@ -29,7 +29,7 @@
 
 ### Framework-ök
 
-Svelte(JS), Arduino(C/C++), Laravel(PHP), GTK+, SDL/SDL2, OpenGL, Pygame(Lython), Löve2D (Lua)
+Svelte(JS), Arduino(C/C++), Laravel(PHP), GTK+, SDL/SDL2, OpenGL, Pygame(Python), Löve2D (Lua)
 
 ## Hobbi
 
