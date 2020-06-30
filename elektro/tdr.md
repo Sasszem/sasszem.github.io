@@ -1,6 +1,6 @@
 # Avalanche-impulzusgenerátor
 
-![Teljes kép](elektro/tdr/tdr.jpg)
+![Teljes kép](tdr/tdr.jpg)
 
 Eredetileg koaxkábelek teszteléséhez (eldönteni hogy `75` vagy `50` ohmosak) akartam építeni egy `TDR`-t, de végül a kihívás hajtott hogy elő tudok-e állítani nagyon gyors impulzusokat.
 
@@ -21,7 +21,7 @@ Egyszóval egy `TDR` nagyon hasznos ha valaki koaxkábeleket akar vizsgálni - p
 
 A neten többféle TDR-áramkör terjed, de két fő típus van: a 74AC-s logikai áramkörre épülő és az avalanche-effektusra épülő. Az előbbihez "speciális" IC-re van szükség, ami nem igazán volt nekem kéznél (a karantén miatt meg még nehezebb bármit beszerezni, de elvileg már úton van ez is), a második áramkör viszont rém egyszerű, csak a tápelleása bonyolult...
 
-![generátor rajz](elektro/tdr/sch_gener.jpg)
+![generátor rajz](tdr/sch_gener.jpg)
 
 Az áramkör működésének alapja az avalanche (lavina) effektus. A tranzisztor, ha megfelelően nagy a C-E feszültség, spontán vezetni kezd, még ha a bázisáram 0 is - és ez a hirtelen átmenet nagyon gyors. 
 
@@ -31,7 +31,7 @@ A nagyfeszültségű áramforrás az ellenálláson keresztül tölti a kondenz�
 
 Az áramkör egyszerűsége lenyűgöző, gyakorlatilag változtatás nélkül minden neten fellelhető verzió megegyezik - bár van ahol 50 ohmos ellenállás helyett két 100 ohmosat kötnek be párhuzamosan... A tranzisztor szinte mindenhol a 2N3904-es típus, ami elég gyakori darab - nálam is akadt egy itthon, szóval minden meg is volt a generátorhoz.
 
-![Közeli kép](elektro/tdr/gener_kozel.jpg)
+![Közeli kép](tdr/gener_kozel.jpg)
 
 Az egyetlen nehézség a ~200V előállítása elegáns módon. Amíg a generátorrész mindenhol megegyezett, itt nem volt két egyforma megoldás - és az enyém is csak egy újabb lett...
 
@@ -42,7 +42,7 @@ kapcsolóüzemű IC-s transzformátoros. Én az utóbbival kezdtem el kísérlet
 
 Az egyetlen gondot az jelentette, hogy nem volt itthon kapcsolóüzemű tápegység IC, és a karantén miatt beszerezni sem nagyon tudtam. Találtam viszont egy 555-öst, illetve egy *valamilyen* transzformátort - valószínűleg egy LCD monitor háttérvilágításából bontottam...
 
-![PSU rajz](elektro/tdr/sch_psu.jpg)
+![PSU rajz](tdr/sch_psu.jpg)
 
 Az első kísérlet egy egyszerű önrezgő áramkör volt. Hasraütve 22kHz-re állított frekvenciával és a fiókból véletlenszerűen választott tranzisztorral az áramkör éppen nem érte el a szükséges feszültséget - egészen az egyik estig, amikor (valószínűleg az áramkör melegedése miatt) egyszer csak működni kezdett, egészen amíg le nem ütöttem véletlenül az asztalról, de azután többet egyszer sem...
 
@@ -52,13 +52,13 @@ A tápegységben az igazi áttörést a szabályozás bevezetése hozta. Az ötl
 
 Az új tápegységgel már elsőre működött a generátor, és onnan már csak a méretét kellett miniatürizálnom...
 
-![PSU közeli kép](elektro/tdr/psu_kozel.jpg)
+![PSU közeli kép](tdr/psu_kozel.jpg)
 
 ### Impulzusok
 
 Sajnos a szkópom nem tudja  a teljes impulzust felvenni, mivel az nagyon gyors és elég nagy amplitúdójú, így a tetejét sajnos levágja...
 
-![illesztett impulzus](elektro/tdr/illesztett.jpg)
-![rövidre zárt](elektro/tdr/rovidre.jpg)
-![szabad vég](elektro/tdr/szabad.jpg)
-![impulzus szélesség](elektro/tdr/szelesseg.jpg)
+![illesztett impulzus](tdr/illesztett.jpg)
+![rövidre zárt](tdr/rovidre.jpg)
+![szabad vég](tdr/szabad.jpg)
+![impulzus szélesség](tdr/szelesseg.jpg)
