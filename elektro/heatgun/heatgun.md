@@ -3,6 +3,8 @@
 ![overview](heatgun.jpg)
 ![eleje](eleje.jpg)
 
+[Vissza](../elektro.md)
+
 ## Linkek
 
 - [forráskód](https://github.com/Sasszem/heat-gun-firmware)
@@ -164,3 +166,5 @@ Kiindulási alapnak egy sajáthoz viszont jó, ezért is rakom ki amit csak lehe
 - jobb lenne egy nagyobb NYÁK-ot építeni sok kisebb helyett
 - a programkód elég randa
 - **a termoelem NEM K típusú!**
+
+[Vissza](../elektro.md)
