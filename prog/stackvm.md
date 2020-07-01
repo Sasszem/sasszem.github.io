@@ -1,0 +1,62 @@
+# StackVM
+
+[Vissza](prog.md)
+
+Veremalapú virtuális gép - 2018 november-decembere
+
+[Github repó](https://github.com/Sasszem/stackvm)
+
+## Miért?
+
+Mindig is érdekeltek az alacsonyszintű technikai részletek, például egy processzor működése vagy belső felépítése. Innen jött a motiváció hogy tervezzek egy saját virtuális gépet, amely egy saját programozási nyelven programozható. Ezzel kapcsolatos első próbálkozásom ez a projekt.
+
+## Mi az a stack (verem)?
+
+A verem egy olyan adatszerkezet, amely egy kupacot modellez. A kupac tetejére tehetünk új elemet, vagy levehetjük a tetején levőt, de a többi elemhez nem nyúlhatunk. Amit legutóljára tettünk a kupacra, azt fogjuk legelőször levenni - azaz ez egy last-if-first-out adatszerkezet (LIFO).
+
+A verem segítségével könnyedén hozhatóak létre lokális névterek, és a verem segítségével akár változók nélkül is írhatunk (egyszerűbb) programokat.
+
+## Virtuális gép
+
+Az én virtuális gépem egy végrehajtó egységből és hozzá tartozó memóriából áll. A memória egyetlen megosztott adatblokk, nincs külön címtere az adatoknak, utasításoknak, veremnek. A végrehajtó egység az utasításokat sorban beolvasva hajtja őket végre.
+
+## Parancskódok
+
+Mivel az egész gép a veremre épül, mindenképpen kell alapvető veremmanipuláció, mint a `push`, `drop` vagy `dup`. Ha nem csak a legfelső elemet akarom elérni, kellhet még `swap` és `rot` is.
+
+A matematikai műveletek közül a gépem ismeri az összeadást, kivonást, szorzást, osztást és maradékképzést. Minden számot 16 bites előjeles egészként kezel.
+
+Az összetettebb logikához összehasonlító parancsok is kellenek, mint a kisebb, nagyobb vagy egyenlő.
+
+A feltételes kódblokkok kivitelezéséhez tartalmaz `goto` és `jz (jump zero)` utasításokat is.
+
+Az újrahasználható függvények írásához a VM tartamaz egy call stacket is, és az ehhez tartozó `call` és `ret` parancsokat.
+
+A külvilággal való kapcsolattartásra az `inchar`, `innum`, illetve `outchar` és `outnum` parancsok használhatóak.
+
+A gép leállítható a `halt` paranccsal.
+
+## Assembler
+
+Írtam egy nagyon egyszerű "assmebler-t" pythonban, ami az előbbi parancsokat a forráskód segítségével lefordítja bináris formátumra. Mivel minden parancskód 1-1 értéknek felel meg, és a `push` kivételével még paramétere sincs egyiknek sem, a fordítás nagyon egyszerű. Az egyetlen bonyolultabb dolog egy címke-rendszer ami megengedi az előrehivatkozást is. A forrásfájlok szintaxisa így a FORTH és az ASM keveréke lesz. A fordító az egész bemenetet keresztülfuttatja a `C előfeldolgozón (cpp)`, így használhatóak `#define`-ok és feltételes fordítás is.
+
+## Hibakezelés
+
+A VM osztály egy boolean flag-ben tárolja hogy a gép fut-e még. Ha valamilyen hiba lép fel, vagy `halt` parancsot kap, a gép leáll. A hibáról tárolja a **hibakódot**, amiből kiderül hogy milyen jellegű hiba lépett fel (nullával osztás, hibás cím, stb), a hibát okozó utasítás **címét**, és egy paramétert, ami hibától függően vesz fel értéket.
+
+## Könyvtár
+
+A programot egy könyvtár formájában készítettem el, így könnyen beépíthető más programokba, ha kedvünk tartja. Mindemellett nincs mód egyéb kommunikációra a host és a VM között mint a négy alap parancs, így főleg nem látom sok értelmét beépíteni...
+
+## Konklúzió
+
+- a stack kiváló lokális változók tárolására
+- az utasításkészlet egyszerű de primitív
+- jó lenne stack-relatív indexelés mint címzési mód
+- az IO parancsok helyett célszerűbb lenne egy általános `SYSCALL` és/vagy `READ/WRITE` parancs, amit a host implementálhatna tettszése szerint. Esetleg követhetném a unixos "minden file" utat...
+- jó lenne osztott memória a host rendszerrel
+- STDLIB nélkül elég keveset tud a gép
+- lehetne írni magasabb nyelvű fordítót
+- NEM OOP-képes, ahhoz az adatmodell teljes újratervezése lenne szükséges
+
+[Vissza](prog.md)

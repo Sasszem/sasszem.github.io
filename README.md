@@ -10,7 +10,7 @@ Ezt az oldalt azért dobtam össze gyorsan, hogy valahol dokumentálni tudjam a 
 
 - [CV](CV.md)
 - [elektrós projektek](elektro/elektro.md)
-- [programozós projektek](prog.md)
+- [programozós projektek](prog/prog.md)
 
 ## Magamról
 
