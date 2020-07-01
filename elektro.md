@@ -1,6 +1,6 @@
 # Elektrós projektek
 
-- [hőlégfúvós forrasztóállomás](elektro/heatgun.md)
+- [hőlégfúvós forrasztóállomás](elektro/heatgun/heatgun.md)
 - [nanoszekundumos impulzusgenerátor](elektro/tdr.md)
 - [meteorológiai műhold vétele](elektro/noaa.md)
 
