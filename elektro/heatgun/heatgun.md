@@ -33,13 +33,13 @@ A "pákában" a következők vannak:
 
 ### Nagy vonalakban
 
-A fűtőszál 230V-ról megy (modelltől függően persze, jót kell rendelni), kb 600W-os, tehát valamivel kevesebb mint 3A-es. Váltakozóáramot szabályozni ekkora áramnál többféleképpen is lehet, én egy triakot használtam és fázishasítást. Utólag visszagondolva lehet hogy nem ez a legjobb megoldás, főként mert az először használt triak úgy melegedett hogy azzal lehetett volna forrasztani...
+A fűtőszál 230V-ról megy (modelltől függően persze, jót kell rendelni), kb. 600W-os, tehát valamivel kevesebb mint 3A-es. Váltakozóáramot szabályozni ekkora áramnál többféleképpen is lehet, én egy triakot használtam és fázishasítást. Utólag visszagondolva lehet hogy nem ez a legjobb megoldás, főként mert az először használt triak úgy melegedett hogy azzal lehetett volna forrasztani...
 
-A motor vezérlése nem túl bonyolult, egy szimpla IRFZ44-es fet-et használok és persze a védő antiparallel diódát. A vezérlő 10kHz-s PWM-et használ (a frekvenciát vaktában választottam de működik).
+A motor vezérlése nem túl bonyolult, egy szimpla IRFZ44-es FET-et használok és persze a védő antiparalel diódát. A vezérlő 10kHz-s PWM-et használ (a frekvenciát vaktában választottam de működik).
 
 A termoelemet elég jól elrontottam: feltételeztem (de ha jól rémlik valahol olvastam is) hogy K típusú, és egy MAX6675-ös IC-t terveztem, ami kb. mindent megcsinál egymagában, erősít, digitalizál, saját hőmérsékletét hozzáadja (a termoelem a két vége közötti különbséget méri), és az egészet elküldi SPI-on - csak éppen rossz lesz az adat, mivel a termoelem J típusú...
 
-A reed kapcsoló a tartóban lévő mágnest érzékeli, de az egyik kivezetése közös a termoelem negatív kivezetésével. Egy felhúzóellenállás segítségével könnyen olvasható az értéke.
+A reed kapcsoló a tartóban lévő mágnest érzékeli, de az egyik kivezetése közös a termoelem negatív kivezetésével. Egy felhúzó ellenállás (pullup) segítségével könnyen olvasható az értéke.
 
 A vezérlőnek persze kell valamilyen kijelzés és bemenet. Kijelzőnek egy gyakori 16x2-es LCD-t használtam, párhuzamos 4 bites módban, inputnak meg egy rotary encoder-t.
 
@@ -47,7 +47,9 @@ A vezérlő lelke egy ATMEGA328P lett 16 MHz-n járatva (khm Arduino UNO khm). �
 
 ### Teljesítmény-szabályozás
 
-Bármilyen ohmos fogyasztó, pl. fűtőszál teljesítményét lehet szabályozni, ha a feszültséget szabályozzuk. Mivel az ellenállás közel konstans, a `P=U^2/R` képlet szerint a feszültségtől függően négyzetesen változtathatjuk a teljesítményt. Az áramforrás feszültségének szabályozása helyett viszont célszerűbb az átlagos feszültséget állítani - például egy négszögjel kitöltési tényezőjének változtatásával - ezt nevezik impulzusszélesség-modulációnak (pulse-width modulation - PWM).
+Bármilyen ohmos fogyasztó, pl. fűtőszál teljesítményét lehet szabályozni, ha a feszültséget szabályozzuk. Mivel az ellenállás közel konstans, a `P=U^2/R` képlet szerint a feszültségtől függően négyzetesen változtathatjuk a teljesítményt. Az áramforrás feszültségének szabályozása helyett viszont célszerűbb az átlagos feszültséget állítani - például egy négyszögjel kitöltési tényezőjének változtatásával - ezt nevezik impulzusszélesség-modulációnak (pulse-width modulation - PWM).
+
+(egy grafikonom sem mérethű, csak a függvény alakja a fontos!)
 
 Egyenáram és teljesítménye:
 ![randa grafikon kézzel rajzolva](telj_konst.png)
@@ -65,7 +67,7 @@ Fázishasításos szabályozás és teljesítménye:
 
 Az igen hülye ábra oka (már azon túl hogy nem rajzolok szépen) az, hogy a kapcsolóelem - a triak - elég körülményesen működik. Ha egyszer bekapcsolt, akkor amíg folyik áram, addig bekapcsolva is marad, akkor is ha nem kap már kapcsolójelet. Egyenáramra éppen ezért nem túl praktikus, de a váltakozó áramnál akárhányszor csomópont (nullátmenet) van, kikapcsol.
 
-A teljesítmény a bekapcsolás megfelelő időzítésével szabályozható - minél később kapcsoljuk be a nullátmenet után, annál kisebb a teljesítmény. Persze az összefüggés nem olyan egyszerű mint a PWM-nél a négyzetes, de a tartományban szigorú monoton és folytonos, szóval simán használható, főleg ha negatív visszacsatolást használunk.
+A teljesítmény a bekapcsolás megfelelő időzítésével szabályozható - minél később kapcsoljuk be a nullátmenet után, annál kisebb a teljesítmény. Persze az összefüggés nem olyan egyszerű mint a PWM-nél a <del>négyzetes</del> lineáris, de a tartományban szigorú monoton és folytonos, szóval simán használható, főleg ha negatív visszacsatolást használunk.
 
 #### ZCD
 
@@ -78,7 +80,7 @@ Sajnos a ZCD kapcsolási rajza eltűnt a projektből:
 
 A vezérlő többi része elég egyszerű, csak bekötöttem mindent egy használható lábra. A ZCD-t muszáj megszakításra kötni, míg a motorvezérlést PWM-es kimenetre. Minden más mehet egy-egy szabad lábra a vezérlőn...
 
-A programkódot Arduino-ban írtam, felhasználva az alap LCD könyvtárat, egy [MAX6675 könyvtárat](https://github.com/adafruit/MAX6675-library) és [ezt a cikket](https://www.best-microcontroller-projects.com/rotary-encoder.html) a rotary encoderhez. Igyekeztem mindent átláthatóra írni, remélem hogy sikerült...
+A programkódot Arduino-ban írtam, felhasználva az alap LCD könyvtárat, egy [MAX6675 könyvtárat](https://github.com/adafruit/MAX6675-library) és [ezt a cikket](https://www.best-microcontroller-projects.com/rotary-encoder.html) a rotary encoder-hez. Igyekeztem mindent átláthatóra írni, remélem hogy sikerült...
 
 A menüt egy külön headerbe raktam az átláthatóság kedvéért.
 
@@ -108,7 +110,7 @@ Szépen sorban modulrendszerben teszteltem az egyes részeket, a motorvezérlés
 
 A legtovább doboz kiválasztása tartott, végül egy meghibásodott PC tápegység dobozába építettem be az egészet. Eredetileg túl nagynak gondoltam, de végül éppen csak belefértem. Külön bónusz volt a 12V-os beépített ventilátor, ami nem hogy megoldotta a triak melegedését de már félő volt hogy kifújja az alkatrészeket a dobozból... Be van még építve egy szabványos tápcsatlakozó és kapcsoló is, amit szintén felhasználtam.
 
-Az elejére vágtam egy lyukat az LCD-nek (lőjenek le ha még egyszer ilyet akarok csinálni), illetve fúrtam egy lyukat a rotary encodernek. A legvégén kapott pár gumilábat és egy műanyaglemezt a lyukra ahol kijön a kábel mint végső simítás.
+Az elejére vágtam egy lyukat az LCD-nek (lőjenek le ha még egyszer ilyet akarok csinálni), illetve fúrtam egy lyukat a rotary encoder-nek. A legvégén kapott pár gumilábat és egy műanyaglemezt a lyukra ahol kijön a kábel mint végső simítás.
 
 ### Panelek
 
@@ -128,13 +130,13 @@ A készüléknek 3 különböző tápfeszültségre van szüksége:
 
 ### Csatlakozások
 
-A páka bekötésére egy sorkapcsot szereltem be, így könnyen kiköthető ha szükséges. A további bekötéseket igyekeztem mindenhol csatlakozóval megoldani, hogy bontható legyen, de a 230V-os vezetékek (a sorkapocs kivételével) mind forrasztva vannak. A vezérlőt és az LCD-t, illetve enkódert összekötő vezetékek szintén forrasztva vannak, és ragasztópisztollyal tehermentesítve.
+A páka bekötésére egy sorkapcsot szereltem be, így könnyen kiköthető ha szükséges. A további bekötéseket igyekeztem mindenhol csatlakozóval megoldani, hogy bontható legyen, de a 230V-os vezetékek (a sorkapocs kivételével) mind forrasztva vannak. A vezérlőt és az LCD-t, illetve encoder-t összekötő vezetékek szintén forrasztva vannak, és ragasztópisztollyal tehermentesítve.
 
 ### Felépítés
 
 A legtöbb kisebb panelt, illetve a transzformátort ragasztópisztollyal rögzítettem a doboz aljára - ügyelve hogy a fémdoboz nehogy rövidre zárja őket.
 
-A sorkapcsot és az LCD-t csavaroztam, az enkódert pedig a saját leszorító csavarjával rögzítettem. A doboz oldalára a pákatartó szintén csavarozva lett.
+A sorkapcsot és az LCD-t csavaroztam, az encoder-t pedig a saját leszorító csavarjával rögzítettem. A doboz oldalára a pákatartó szintén csavarozva lett.
 
 A vezérlő paneljét színesrudakkal rögzítettem, amelyeket szintén csavaroztam. A vezérlő (a kábelek lecsatlakoztatása után) egyszerűben kiemelhető, de az újraprogramozáshoz elég egy kicsit kintebb húzni.
 

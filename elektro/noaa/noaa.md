@@ -2,7 +2,7 @@
 
 [Vissza](../elektro.md)
 
-Az egyik első a videó amit a [The Thought Emporium](https://www.youtube.com/channel/UCV5vCi3jPJdURZwAOO_FNfQ)-tól láttam a [műholdvételi projektet](https://www.youtube.com/watch?v=cjClTnZ4Xh) mutatott be. Megetettszett az ötlet, és úgy gondoltam, megpróbálom megcsinálni én is.
+Az egyik első a videó amit a [The Thought Emporium](https://www.youtube.com/channel/UCV5vCi3jPJdURZwAOO_FNfQ)-tól láttam a [műholdvételi projektet](https://www.youtube.com/watch?v=cjClTnZ4Xh) mutatott be. Megtetszett az ötlet, és úgy gondoltam, megpróbálom megcsinálni én is.
 
 ## Műholdak
 
@@ -50,10 +50,10 @@ Dekódolt kép:
 
 ## Továbbiak
 
-Az erősítő elhelyezése nem optimális, jóel közelebb is el lehetne helyezni az antennához. Ezzel és az elhelyezéssel valószínűleg jelentősen javítható a zajos kép.
+Az erősítő elhelyezése nem optimális, jóval közelebb is el lehetne helyezni az antennához. Ezzel és az elhelyezéssel valószínűleg jelentősen javítható a zajos kép.
 
 Még pár másik műhold is ad ezen a frekvencián, főleg az orosz Meteor-M2-t szokták még vadászni.
 
-Még jó sok egyéb dolog van amit egy RTL-SDR-el lehet csinálni, például szivesen éptenék QS-100 vagy GEOS downlinket is, ha már műhold...
+Még jó sok egyéb dolog van amit egy RTL-SDR-el lehet csinálni, például szívesen építenék QS-100 vagy GEOS downlinket is, ha már műhold...
 
 [Vissza](../elektro.md)
