@@ -47,7 +47,7 @@ A YALG nagyon egyszerű, összesen 6 fajta elemet tartalmaz:
 
 Az elemekből összetett felületek deklaratív módon építhetőek fel:
 
-```Lua
+```lua
 local g = GUI(
     HDiv(
         Button("Gomb 1"),
