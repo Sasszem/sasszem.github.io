@@ -3,6 +3,11 @@
 Online multiplayer tic-tac-toe Svelte-ben, websocket kommunikációval és Python backenddel    
 (na ez már projekt név!)
 
+2020.06.23 22:45 - 
+
+- első működő teljes verzió: 2020.06.24 11:17
+- azóta refaktorálás, javítgatások
+
 [Github repó](https://github.com/sasszem/tic-tac-toe)
 
 [Vissza](prog.md)
