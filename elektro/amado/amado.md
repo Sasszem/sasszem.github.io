@@ -2,6 +2,8 @@
 
 Avagy hogy a jófenébe működik az a tranzisztor vagy micsoda?
 
+{% include toc.html %}
+
 [Vissza](../elektro.md)
 
 Figyelem! Ez a projekt annyira folyamatban van hogy csak na! Próbálom megérteni az elméletét baromi sok dolognak, és ennek megfelelően itt leginkább bénázás várható!
