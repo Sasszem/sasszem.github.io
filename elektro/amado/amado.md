@@ -33,7 +33,7 @@ Elég sokat olvasgattam már tranzisztorokról, munkapont-beállításról, elő
 
 Hogy segítsem magam a hibakeresésben (és *egyáltalán* nem azért hogy dicsekedjek a tudásommal, mert az jelen pillanatban bőven kevés még ehhez az egyszerű projekthez is), igyekszem majd mindenféle magyarázó szövegeket és/vagy ha időm (és kedvem) van rá, ábrákat beszúrni ide.
 
-### 2020.07.16
+### Első nap - 2020.07.16.
 
 A mai napon kezdtem el ténylegesen foglalkozni a projekttel.
 
@@ -152,7 +152,7 @@ Itt az `R1`-re eső feszültség ugyan akkora mint az `Re`-re eső plusz az `Ube
 
 Az első próbálkozásként én ezt az áramkört választottam, az osztót egy `10k`-s és egy `1k`-s ellenállásból felépítve. Ezek az értékek nem éppen ideálisak, mivel bőven nem a tervezett szintre állítják be az áramkört...
 
-##### Összeszerelés
+#### Összeszerelés
 
 A teljes oszcillátor rajza így:
 
@@ -168,7 +168,9 @@ Második verzió:
 
 > (fotó)
 
-Eredmény: működni nem igazán működi, nem látok oszcillációt sehol az áramkörben.
+#### Eredmény
+
+Működni nem igazán működi, nem látok oszcillációt sehol az áramkörben.
 
 További teendők - első kör:
 - képeket beszúrni ide
@@ -185,3 +187,77 @@ Második kör - ha végre oszcillál:
 - hangolhatóvá tenni - változtatható kondenzátor vagy tekercs beépítése (váltás Hartley-ra?)
 - puffererősítőt tervezni (mondjuk emitterkövetőt), amely majd az antennát hajtja
 - AM-modulátor áramkört tervezni
+
+### Második nap - 2020.07.17.
+
+Elkezdtem hibát keresni az előző napi áramkörben. Rákötöttem egy függvénygenerátort a tranzisztor bázisára, és mértem a kimenetet - a tranzisztor NEM erősítette megfelelően az 1MHz-s jelet. Leginkább a visszacsatoló áramkörre gyanakszom, amely a csatolókondenzátor miatt szűrőként viselkedhet... De nem igazán tudom viszont találtam egy módszert a kikerülésére.
+
+#### Szűrőkör
+
+Átmértem egy tucat állítható tekercset, amelyeket egy barátomtól kaptam, aki minden valószínűség szerinte egy TV-ből bonthatta őket. A legkisebb érték amit találtam kb. `1 uH`-s volt. Ezekhez kb. `5nF`-os kondenzátorok illettek. Ezek a tekercsek minden valószínűség szerint jobb minőségűek és könnyebben hangolhatók mint amit én készítettem, így érdemesebb ezeket használni.
+
+A módosított áramkör sajnos még mindig nem volt hajlandó oszcillálni, és a jel még mindig erősen tompítva jelent meg a kollektoron.
+
+#### Erősítő munkapontja
+
+Egy kis utánanézés után találtam pár tucat Colpitts-áramkört. Elég sokféle módon állították be a tranzisztor munkapontját, és ennek megfelelően elég sok különböző módon illesztették a visszacsatoló kört.
+
+Az egyik egyszerűbb áramkör a következőképpen nézett ki:
+
+> (rajz)
+
+Ez egy egyszerűbb munkapontbeállító áramkört használ, és a visszacsatolás is kicsit egyszerűbben van illesztve. A korább illesztésnél a kondenzátor azért kellett, mert a kollektor és a bázis nem azonos egyenáramú szinten kell hogy legyenek, így ennek a szintnek az illesztését végzi. Ebben az egyszerűbb verzióban viszont az `1k`-s ellenállás pontosan elvégzi ezt a feladatot. 
+
+#### Összeszerelés
+
+Próbaképpen átépítettem a panelt erre az áramkörre, de ezzel sem volt még sok sikerem. Oszcilloszkópos mérésekkel megállapítottam hogy létrejön oszcilláció, de valamiért nem stabil, elég gyorsan elhal. A tápfeszültség fokozatos növelésével viszont sikerült stabilizálni - `9V`-on megbízhatóan működik.
+
+> (kép a panelről)
+
+Az egyik szépséghibája ennek az volt, hogy a `100OHm`-os ellenálláson ekkor elég nagy áram folyt, és rendesen túlmelegedett...
+
+##### Csúnya jelalak
+
+A másik hiba a jelalak volt:
+
+> (az a háromszögletű izé ami a szinusz helyett jelent meg)
+
+Frekvenciaspektrum:
+
+> (spektrum I)
+
+Jól látható hogy az alapvető frekvencia jó helyen van, viszont az első két felharmonikus (3x-os és 5x-ös frekvencia) igen erős - `10dB`-vel (1/10) és `20dB`-vel (1/00) gyengébbek csak.
+
+Ez az áramkör a közelébe rakott AM rádiót már képes megszólaltatni, de gyakorlatilag az AM sáv egészében, a többi adást zavarva. Kezdetnek nem rossz, erős szűréssel talán javítható, de nem az igazi.
+
+A jelalak alapján erősen torzít az erősítő. Az alapján amit tudok, ennek két oka lehet:
+- B vagy C működési osztály
+- telített tranzisztor
+
+Mivel a működési osztály a munkaponttól ÉS a jeltől függ, és a jel amplitúdója magától áll be, ha jól értem ezt az áramkört, mindig akkora lesz hogy A osztályban működön.
+(a nagyobb amplitúdó miatt a jel egy része le lenne vágva, ami felharmonikusakat hozna be, amit kiszűr a szűrő, és nem kerülnének újra a bemenetre - vagy valami ilyesmi, lehet hogy egyáltalán nem így van - az első verzió mintha nem így működne).
+
+##### Megoldás
+
+A `100Ohm`-os ellenállás melegedését a legegyszerűbben oldottam meg - a bázis (és egyben a kollektoráram) csökkentésével. A `100Ohm`-os ellenállást `1k`-ra cseréltem, míg az `1k`-sat `10k`-ra. A hatás: a melegedési probléma megoldva, és bónuszként a jel is szebb lett (bár ennek okában nem vagyok biztos):
+
+> (kép a jelről)
+
+Na és a spektruma:
+
+> (szebb spektrum)
+
+Ez máris sokkal kevésbé zavarja az AM adókat, csakis a saját frekvenciája környékén teszi, míg az előző gyak. mindent zavart.
+
+A második napot itt fejeztem be, mivel már van egy működő oszcillátorom. A kimenete elég gyenge, jöhet majd még rá egy emitterkövető. A spektruma első ránézésre jó, de még lehet hogy egy sávszűrő nem ártana rá...
+
+#### Eredmény
+
+CW adónak már akár alkalmas.
+
+A további teendők:
+- képeket beszúrni ide
+- hangolhatóságot tesztelni
+- AM moduláció (lehet hogy SSB-t egyszerűbb lenne?)
+- puffererősítő
+- új nyák / elrendezés
