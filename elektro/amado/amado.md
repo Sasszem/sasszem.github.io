@@ -42,7 +42,7 @@ A mai napon kezdtem el ténylegesen foglalkozni a projekttel.
 Először is, megnéztem egy AM rádiót, hogy mekkora frekvenciára kell áramkört tervezzek.
 A legtöbb itthon talált vevő AM sávban kb. a 600-1200 kHz-t fedi le. Középértéknek 1MHz-t választottam. 
 
-> (rádióskála képe kéne ide)
+![Rádióskála](radioskala.jpg)
 
 Az első feladat egy működő 1 MHz-s oszcillátor felépítése. Biztosan egyszerű, ha ért hozzá az ember...
 
@@ -50,11 +50,15 @@ Az első feladat egy működő 1 MHz-s oszcillátor felépítése. Biztosan egys
 
 Az oszcillátoroknak utánaolvasva a működésük elég intuitív. Nem kell más, mint egy erősítő, aminek a kimenete vissza van kötve a bemenetére - egy megfelelő szűrőáramkörön keresztül. Az erősítő begerjed, és a szűrőűramkör biztosítja hogy ezt a megfelelő frekvencián tegye.
 
-> (be kéne ide szúrni egy képet erről az elrendezésről)
+![Oszcillátor blokkrajza](oszciblokk.jpg)
 
 A szűrőáramköröket általában L és C elemekből (azaz tekercsekből és kondenzátorokból) építik fel. A két leggyakoribb típus a Hartley-féle és a Colpitts-féle.
 
-> (colpitts és hartley hálózat képe)
+Colpitts:
+![Colpitts-hálózat](cphalozat.jpg)
+
+Hartley:
+![Hartley-hálózat](hartleyhalozat.jpg)
 
 Az oszcillációnak itt két feltétele van, amelyek szintén intuitívak (Barkhausen stabilitási kritériumok vagy mik ezek):
 
@@ -65,7 +69,7 @@ Azaz az erősített jel a már jelenlévő gyengébb jelhez hozzáadódva azt er
 
 Ezek ha minden igaz, teljesülnek a Colpitts és Hartley-oszcillátoroknál - majd csinálok egy pontos levezetést.
 
-> (pontos levezetés!)
+> (pontos levezetés lesz ide beillesztve ha csinálok egyet)
 
 (fontos megjegyezni, hogy mind a két típus olyan erősítőt használ, ami eleve csinál egy 180°-os fázisfordítást, így a szűrőáramkör is 180°-ra van tervezve!)
 
@@ -79,11 +83,11 @@ Az egyszerűbb talán a szűrő. Választhatunk a Colpitts és Hartley között.
 
 A pontos értékek meghatározásához nem kell más mint a Thompson-képlet: `f=(2*pi*sqrt(LC))^-1` (kéne Latex support a blogba!). ITt két független változónk van: `L` és `C`. Én utóbbit vettem fixnek - két `100nF`-os kondit "sorbakötve" `C=50nF` lett. Innen megoldható az egyenlet, kiszámolható hogy `L=500nH` (körül-belül), és egy online számológép segítségéve már meg is tervezhető a tekercs - nem lesz túl nagy darab...
 
-> (kép a tekercsről)
+![Második szűrő kör alkatrészei](szuro2.jpg)
 
 Kis kitérő: első körben két `500nF`-os kondiból csináltam `250nF`-ost, így `L=100nH`-t kaptam, így egy jóval kisebb tekercset készítettem. Nem működött (ez sem), így elsődlegesen a két kondit okoltam, mivel elektrolitok voltak, amik híresek arról hogy nagyobb frekvenciákon nem működnek jól.
 
-> (kép az elősző tekercsről, és a két kondiról)
+![Első szűrő kör alkatrészei](szuro1.jpg)
 
 #### erősítő
 
@@ -92,7 +96,7 @@ Akkor már csak az erősítőt kéne megtervezni. A legegyszerűbb talán egy eg
 - kollektorkapcsolású (alias emitterkövető) - nincs feszültségerősítés (sőt, ~0.6V-ot le is vesz), de elég nagy az áramerősítés
 - emitterkapcsolású - mind áram, mind feszültségerősítés van
 
-> (erősítőtopológiák rajzai)
+![Erősítőtopológiák](topologiak.jpg)
 
 Na de hogyan is működnek ezek?
 
@@ -100,7 +104,7 @@ Na de hogyan is működnek ezek?
 
 (figyelem! amit most írok, az mind az NPN típusú BJT tranzisztorokra vonatkozik, a többi típus létezését most figyelmen kívül hagyom!)
 
-> (NPT tranzisztor(ok) és rajzjele)
+![NPT tranzisztor(ok) és rajzjele](npntranyo.jpg)
 
 "A tranzisztor egy háromlábú állat" - azaz 3 kivezetése van neki. Ezek (nem feltétlen sorban) az `emitter`, a `bázis` és a `kollektor`.
 Áram folyhat (általában) a bázis-emitter és a kollektor-emitter irányban.
@@ -138,17 +142,17 @@ Mivel `Ie=Ic+Ib` és `Ic>>Ib` így jó közelítéssel `Ic=Ie`. Mivel ez pontosa
 
 Ha ismerjük a tranzisztor bétáját, akkor elég könnyedén meghatározhatunk egy `Rb=(Utáp-Re*Ie-0.6)/Ib`, ami beállítja a nyugalmi áramot:
 
-> (egyellenállásos áramkör rajza)
+![egyellenállásos áramkör rajza](egyellenallas.jpg)
 
 Az egyetlen szépséghibája ennek az, hogy a tranzisztor bétája mindentől IS függ, beleértve a mexikói peso forintárfolyamát és a mérnök aktuális véralkoholszintjét, így eléggé nem stabil ez a beállítás - arról nem is beszélve hogy baromi nehéz két egyformát találni, tehát sorozatgyártásra sem éppen alkalmas ez az áramkör...
 
 Egy jobb módszer `Rb`-t `Re`-vel sorbakötni, így valamelyest stabilizálja a rendszert:
 
-> (sorbakötött beállítás rajza)
+![sorbakötött beállítás rajza](kollektorvisszacsatolas.jpg)
 
 De a legjobb módszer talán egy feszültségosztót használni:
 
-> (feszültségosztós áramkör rajza)
+![feszültségosztós áramkör rajza](feszoszto.jpg)
 
 Itt az `R1`-re eső feszültség ugyan akkora mint az `Re`-re eső plusz az `Ube` 0.6-0.7V-ja. Ha tudjuk a tervezett `Ic` alapján az `Re`-re eső feszültséget, akkor ahhoz a 0.6V-ot hozzáadva megkapjuk a feszültségosztó értékét. Ezt persze kerekíteni kell a ténylegesen rendelkezésre álló alkatrészek alapján, de mivel csak az `Ube` változik igazándiból, így ez egy elég stabil és béta-független beállítás. Hozzá kell még tenni hogy a feszültségosztót úgy kell megtervezni hogy a rajta folyó áramhoz képest `Ib` elég kicsi legyen, és ne befolyásolja így a beállított feszültséget.
 
@@ -160,15 +164,13 @@ A teljes oszcillátor rajza így:
 
 Első verzió:
 
-> (rajz 1 - 100nH, 2x500nF)
+![rajz 1 - 100nH, 2x500nF](kapcsolas1.jpg)
 
-Második verzió:
-
-> (rajz 2 - 500nH, 2x100nF)
+A második verzió ugyan ez volt, csak 2x`100nF`-al és egy `500nH`-s induktivitással
 
 És a megépített áramkör "próbanyákra":
 
-> (fotó)
+> (sajnos hamarabb szétszedtem mint lefotóztam volna)
 
 #### Eredmény
 
@@ -206,7 +208,7 @@ Egy kis utánanézés után találtam pár tucat Colpitts-áramkört. Elég sokf
 
 Az egyik egyszerűbb áramkör a következőképpen nézett ki:
 
-> (rajz)
+![2. kapcsolás](kapcsolas2.jpg)
 
 Ez egy egyszerűbb munkapontbeállító áramkört használ, és a visszacsatolás is kicsit egyszerűbben van illesztve. A korább illesztésnél a kondenzátor azért kellett, mert a kollektor és a bázis nem azonos egyenáramú szinten kell hogy legyenek, így ennek a szintnek az illesztését végzi. Ebben az egyszerűbb verzióban viszont az `1k`-s ellenállás pontosan elvégzi ezt a feladatot. 
 
@@ -214,7 +216,7 @@ Ez egy egyszerűbb munkapontbeállító áramkört használ, és a visszacsatol�
 
 Próbaképpen átépítettem a panelt erre az áramkörre, de ezzel sem volt még sok sikerem. Oszcilloszkópos mérésekkel megállapítottam hogy létrejön oszcilláció, de valamiért nem stabil, elég gyorsan elhal. A tápfeszültség fokozatos növelésével viszont sikerült stabilizálni - `9V`-on megbízhatóan működik.
 
-> (kép a panelről)
+![kép a panelről](panel1.jpg)
 
 Az egyik szépséghibája ennek az volt, hogy a `100OHm`-os ellenálláson ekkor elég nagy áram folyt, és rendesen túlmelegedett...
 
@@ -222,11 +224,11 @@ Az egyik szépséghibája ennek az volt, hogy a `100OHm`-os ellenálláson ekkor
 
 A másik hiba a jelalak volt:
 
-> (az a háromszögletű izé ami a szinusz helyett jelent meg)
+![az a háromszögletű izé ami a szinusz helyett jelent meg](csunyajel.jpg)
 
 Frekvenciaspektrum:
 
-> (spektrum I)
+![csúnya spektrum](csunyaspektrum.jpg)
 
 Jól látható hogy az alapvető frekvencia jó helyen van, viszont az első két felharmonikus (3x-os és 5x-ös frekvencia) igen erős - `10dB`-vel (1/10) és `20dB`-vel (1/00) gyengébbek csak.
 
@@ -243,11 +245,11 @@ Mivel a működési osztály a munkaponttól ÉS a jeltől függ, és a jel ampl
 
 A `100Ohm`-os ellenállás melegedését a legegyszerűbben oldottam meg - a bázis (és egyben a kollektoráram) csökkentésével. A `100Ohm`-os ellenállást `1k`-ra cseréltem, míg az `1k`-sat `10k`-ra. A hatás: a melegedési probléma megoldva, és bónuszként a jel is szebb lett (bár ennek okában nem vagyok biztos):
 
-> (kép a jelről)
+![Szép jel](szepjel.jpg)
 
 Na és a spektruma:
 
-> (szebb spektrum)
+![szép spektrum](szepspektrum.jpg)
 
 Ez máris sokkal kevésbé zavarja az AM adókat, csakis a saját frekvenciája környékén teszi, míg az előző gyak. mindent zavart.
 
