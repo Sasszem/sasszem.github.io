@@ -265,3 +265,28 @@ A további teendők:
 - AM moduláció (lehet hogy SSB-t egyszerűbb lenne?)
 - puffererősítő
 - új nyák / elrendezés
+
+### Kis szünet - 2020.07.18 - 2020.07.21.
+
+Ebben a pár napban nem sokat csináltam, melynek egyik oka a tanácstalanság, másik oka a (talán az időjárásból eredő) általános levertségem és kellemes fejfájásom volt. 
+
+Az időm egy részét az áramkörszimulátorban töltöttem, illtetve a neten olvasgattam az AM-modulációról. A szimulátorban rengeteg különféle módszert találtam ahogy NEM lehet AM-modulátort építeni, míg a neten egy pár módszert, amelyek szintén nem tudtam szimulátorban működésre bírni. A két legígéretesebb anyag:
+- [JFET-es modulátor](https://www.engineersgarage.com/circuit_design/circuit-design-how-to-make-an-amplitude-modulated-wave/)
+- [AM moduláció elmélet](https://sound-au.com/articles/am-modulation.htm)
+
+HA jól értem ezt az egészet, akkor nekem két analóg jel *szorzatát* kéne előállítanom. Összegezni egyszerű lenne, de a szorzásra nem nagyon van ötletem, a [legjobb összetippelt áramköröm](http://tinyurl.com/y6kaymrq) sem túl ígéretes sajnos.
+
+Egy működő áramkör a [Gilbert-cell](https://www.youtube.com/watch?v=7nmmb0pqTU0) lenne, de ez egy kicsikét bonyolult cucc, és nem tudom hogy fel tudnék-e egyet építeni diszkrét tranzisztorokból. Egy `MC1496`-os IC elég egyszerű megoldás lehetne, de sajnos az IC-ket kizártam korábban...
+
+A másik figyelemre érdemes történés ebben a három napban (és ez egyben a produktivitás hiányának másik forrása) az volt, hogy végignéztem az `Avatar: the last airbender` mindhárom évadját, és ezzel hivatalosan is felnőtt férfivé válltam aki megnövesztheti a haját. Igaz, eddig is ezt tettem, ami a dolgok egy szigorúan materialista nézőpontjából tekintve az egész sorozatnézés hiábavalóságát jelzi, no de ki tekint bármire is szigorúan materialistán miután éppen most nézett végig 30 órányi keleti filozófiával megcukrozott varázslást és világmegmentést egy gyerekcsatorna által készített sorozat formájában?
+
+Hogy mást ne mondjak, én is elértem a megvilágosodást, és rájöttem, hogy az én szenvedéseim (melyek egy részének dokumentációja fentebb olvasható) kiváltó oka nem csak a téma bonyolultsága, hanem a saját türelmetlenségem, mert túl hamar akarok túl sokat megtanulni, ráadásul mindezt rendszertelenül, össze-vissza és teljesen egyedül. Ha szépen megvárnám a szeptembert, amikoris elkezdőik majd az egyetem, tanulhatnék annyit a tranzisztoros áramkörökről hogy örökre megundorodnék mindentől aminek kettőnél több lába van, de nem, én türelmetlen vagyok, és túl sok szabadidővel rendelkezem, így muszáj azt megtöltenem a tudás kergetésével oly módon, hogy sok új projektet kezdek, amelyek egyikéhez sincs meg a szükséges alaptudásom, majd mindenfélét kipróbálok hátha véletlenül valami működik, majd mikor a sokadik kísérlet füstölgő romjait szedem össze, elátkozom azt a napot is amikor először forrasztópákát fogtam a kezembe... 
+
+(ne ebből már nem magyarázom ki magam, nem lesz ember a világon aki elhiszi hogy én ezt nem részegen írtam...)
+
+Egyszóval a nyári kellemes kikapcsolódás mellett megtanultam azt, hogy az AM-moduláció bonyolult dolog. A tanácstalanságom legyőzésére pedig a szokásos módszert fogom használni, azaz összeírok egy teendőlistát, amiket meg kéne csinálni, azt kitűzöm a monitoromra, aholis az idők végezetéig érintetlenül (de legfőképpen befejezetlenül) pihenhet.
+
+De az is lehet, hogy az említett listát inkább digitális formában rögzítem, és megosztom a világgal, hogy mások is lássák, hogyan kell úgy félbehagyni valamit, hogy még magaddal is elhiteted hogy fogsz rajta dolgozni:
+- erősítőt tervezni az oszcillátorfokozat után
+- NYÁK-ot tervezni / építeni a már elkészült moduloknak
+- sokat informálódni az AM-modulációról, illetve a `Gilbert-cell`-ről
