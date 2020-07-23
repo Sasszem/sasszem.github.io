@@ -290,3 +290,64 @@ De az is lehet, hogy az említett listát inkább digitális formában rögzíte
 - erősítőt tervezni az oszcillátorfokozat után
 - NYÁK-ot tervezni / építeni a már elkészült moduloknak
 - sokat informálódni az AM-modulációról, illetve a `Gilbert-cell`-ről
+
+### Tanulás - 2020.07.22
+
+Egy kis tanulás soha sem árt, így nekiálltam utánanézni pár dolognak:
+- [differenciál erősítős videó](https://www.youtube.com/watch?v=mejPNuPAHBY)
+- [másik differenciál erősítős doksi](https://www.d.umn.edu/~htang/ece2212_doc_F12/Lecture1_Ch7.ppt)
+- [gilber-cell videó](https://www.youtube.com/watch?v=7nmmb0pqTU0)
+
+Már kezdem érteni ezeket, bár az egyenáramú munkapontok beállítása itt jóval összetettebb mint egy egyszerű egytranzisztoros áramkörnél.
+
+#### Differősítő
+
+> (képet ide beszúrni)
+
+A differenciálerősítő nem *olyan* bonyolult (legalábbis nem annyira mint a gilbert-cell). Nyugalmi helyzetben, ha a bázisok közötti feszültségkülönbség 0, akkor a nyugalmi áramok a két körben megegyeznek. (persze csak ha a két tranzisztor bétája megegyezik, tehát diszkrét elemekből ezt csak megközelíteni lehet, de `IC`kben egészen jól megoldható).
+
+Ha a két tranzisztor bázisa nem azonos feszültségen van, akkor az áramok sem lesznek egyformák. Az összegük viszont állandó marad. A kollektorokon levő feszültségkülönbség arányos a bázisok feszültségének különbségével, de előjele fordított lesz. A feszültségkülönbség nem függ a közös feszültségtől (common mode), csak a különbségtől.
+
+Áramgenerátor helyett használható sima ellenállás is, de ekkor kevésbé lesz stabil, és a kimeneti feszültség és a differenciális erősítés is függ a közös jeltől.
+
+A differenciális erősítés arányos `Ic`-vel.
+
+Ha az egyik bemenetet fix egyenfeszültségre kapcsoljuk, a másikat pedig egy olyan váltakozóáramú jelre amelynek egyenfeszültségű komponense megegyezik ezzel a feszültséggel, akkor az erősítőt differenciális jel helyett "single-ended" jellel hajthatjuk.
+
+Ha a kimenetet nem a két kollektor különbségéről vesszük, hanem csak az egyik kollektorról (földhöz képest), akkor a kimenet is single-ended. Ilyenkor a másik kollektorhoz tartozó ellenállást el is hagyhatjuk. Ha a bemenet is single-ended, akkor a másik tranzisztor bázisára köthetjük.
+
+Az erősítő linearitása jelentősen növelhető emitterdegenerációval, azaz egy-egy plusz ellenállás beillesztésével a tranzisztorok emittere és az áramgenerátor közé:
+
+> (áramköri rajz)
+
+Ez csökkenti az erősítést, viszont lineárisabb működést biztosít ami kisebb torzítást jelent.
+
+#### Gilbert-cell
+
+A differenciálerősítő egy továbbfejlesztése a Gilbert-cell. Mivel az erősítési tényező függ a fix áramtól, ez használható két analóg feszültség összeszorzására.
+
+A gilbert-cell két párhuzamosan kapcsolt differősítőből áll, amelyek áramát egy harmadik diffpár szabályozza. A bemenetek mind differenciális jelek (de megfelelő egyenáramú beállítással ez megkerülhető), és a kimenet is differenciális a kollektorellenállások között.
+
+A kimeneti jel arányos a két bemeneti jel szorzatával. Ezért ez az áramkör használható modulátorként vagy keverőként is, illetve ha jól értem akkor fázisdetektorként (amiről nem tudom hogy mire jó, csak mint a PLL-el (fáziszárt hurok, frekvenciaszintézisre használható) egyik elemeként ismerem).
+
+A nagyszámú tranzisztor miatt elég nehézkes a diszkrét tranzisztorokat egymáshoz illeszteni, de integrált áramkörökben ez könnyebben megoldható, így a legtöbbször kész IC-ket használnak, például az `MC1496`-ot, `NE602` vagy `NE612`. Utóbbi kettő egy IC-ben tartalmaz mindent amit én itt tranzisztorokból építgetek, úgyhogy az már tuti hogy beszerzek egy pár darabot...
+
+#### Tervezési ötletek
+
+Sima diffpárt viszonylag könnyen tudok építeni, bár megfelelően illeszteni a tranzisztorokat nem könnyű. Léteznek ugyan egy tokba szerelt dupla tranzisztorok, de az egyetlen ilyet amit találtam, Csehszlovákiában gyártotta a Tesla szóval nem egy túl gyakori/modern darab.
+
+A diffpár áramgenerátorának használható a klasszikus egytranzisztoros áramgenerátor vagy áramtükör.
+
+Egytranzisztoros:
+
+> (egytranzisztoros áramgenerátor képe)
+
+Áramtükör:
+
+> (áramkör NPN-el)
+
+Egyszerűbb az egytranzisztoros áramkör. A bázisfeszültség változtatásával (pl. kapacitívan rácsatolt jellel) változtatható az áram, és így a diffpár erősítése. Nem tudom hogy ez praktikusan működik-e, de jó kiindulási alap.
+
+A legnagyobb nehézéget számomra az egyenáramú munkapontok beállítása okozza. A szimulátorban akárhogy próbálkozom is a beállítással, de nem igazán találok olyan beállítást amelynél a tranzisztorok végig nyitva vannak, és egyszer sincsenek telítésben.
+
+[diffpár, ami egészen jónak néz ki](https://www.falstad.com/circuit/circuitjs.html?cct=$+1+3.125e-8+0.910053618607165+52+5+43%0At+176+256+224+256+0+1+-5.584265186578531+0.6332914161452345+120%0At+368+256+320+256+0+1+-5.342504028558862+0.5847424165130528+100%0Aw+224+224+224+144+0%0Aw+224+144+272+144+0%0Aw+320+144+320+160+0%0Aw+272+144+320+144+0%0AR+272+144+272+96+0+0+40+9+0+0+0.5%0Aw+320+240+320+224+0%0Aw+224+224+224+240+0%0Ar+320+224+320+160+0+1000%0Ar+224+272+272+272+0+100%0Ar+272+272+320+272+0+100%0AR+176+256+128+256+0+1+1000000+0.5+3+0+0.5%0AR+368+256+416+256+0+0+40+3+0+0+0.5%0Ap+224+240+320+240+1+0%0AM+320+240+432+176+0+2.5%0Ai+272+272+272+352+0+0.005%0Ag+272+352+272+384+0%0Ao+14+2+0+5378+10+0.1+0+1%0Ao+15+2+0+5378+10+0.1+1+1%0A)
