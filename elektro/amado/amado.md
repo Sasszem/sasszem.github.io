@@ -388,3 +388,93 @@ Egészen jól néz ki ahhoz képest hogy nem működik:
 
 ![Nem működő áramkör panelja 1](ccpair1.jpg)
 ![Nem működő áramkör panelja 2](ccpair2.jpg)
+
+### AM-moduláció - 2020.07.25
+
+Kicsit elegem lett azon modulációs módszerekkel, amelyekről az elmúlt napokban olvastam. Kicsit nagyon, mivel nagy részük az én célomra erősen túlbonyolított, és nehezen használható...
+
+Szóval vissza az első mezőre. Mi lenne ez az AM-moduláció?
+
+#### Moduláció
+
+A rádió folyamatos, periodikus (általában szinuszos) jelre épül: `U(t) = U0 * sin(ωt + φ)`. Ez a folyamatos periodikus jel viszont nem tartalmaz információt, így azt erre a *vivőhullámra* kell ráültetni modulációval.
+
+A fenti egyenletben 3 paraméter van: 
+- `U0`, a csúcstól-csúcsig mért feszültség
+- `ω`, a körfrekvencia (`2πf`)
+- `φ`, a fázis
+
+Ezen három paraméter egyikét az időben vázoltatva különféle modulációs formákat kapunk:
+- amplitúdómodulációt (**AM**)
+- frekvenciamodulációt (**FM**)
+- fázismodulációt 
+
+Mindegyiknek vannak előnyei és hátrányai. Az AM viszonylag egyszerűbb, de jóval érzékenyebb mindenféle zajra és vételi problémára. Régebben igen elterjedt volt, így elég könnyű volt egy rádióvevőt találni hozzá. Az FM manapság felváltotta a jobb hangminőség és kisebb zajérzékenység miatt. Fázismodulációt tudtommal digitális jelek átvitelére használnak.
+
+#### Amplitúdómoduláció
+
+Az AM lényege hogy a jel amplitúdóját szabályozzuk egy másik jellel:
+
+> (AM moduláció)
+
+Alaposabban megnézve azt találjuk, hogy gyakorlatilag össze kell szorozni a két függvényt. Érdemes észrevenni hogy AM-ben a moduláló jelnek van egy egyenáramú (konstans) komponense. Ha ez nem lenne, ezt kapnánk:
+
+> (DSB-SC moduláció)
+
+Ez ha minden igaz, az úgynevezett `DSB-SC` (double sideband, suppressed carrier) moduláció.
+
+A moduláló jel váltakozó áramú és egyenáramú komponensének viszonya határozza meg a *modulációs mélységet*
+
+> (kis modulációs mélység képe)
+> (100%-os moduláció képe)
+> (100% fölötti moduláció képe)
+
+Látható, hogy (a váltakozó komponenshez képest) túl alacsony egyenáramú komponens jelentősen torzítja a jelalakot, így nemkívánatos.
+[Béka írt nem is olyan régen erről](http://www.szetszedtem.hu/1174felharmonikusszuro/cbradiohoz.htm)
+
+#### Keverés
+
+A két jel összeszorzása frekvenciaszempontból azt eredményezi, hogy a két frekvencia összege és különbsége fog megjelenni. Ezt rádiótechnikában keverésnek is nevezik. Helyzettől függően a két eredményből néha csak az egyiket akarjuk, így a másikat kiszűrjük, illetve bizonyos keverőtípusok átengedik a bemenő jelek egy részét, ami szintén helyzettől függően lehet jó vagy rossz. A keverő mindenféle másodlagos, harmadlagos, stb. produktumokat is előállíthat a már létrejött jelek további összekeverésével, de ezek majdnem mindig zavaró tényezőként vannak jelen.
+
+A neten elég sok keverőáramkör található. Ezeket lehet lineáris vagy kapcsolóüzemű(switching) keverőkre bontani.
+
+Kapcsolóüzemű keverő pl. a diódagyűrűs keverő, vagy jó pár egytranzisztoros (BJT) keverő.
+
+Lineáris keverő például a Gilbert-cell, vagy az általam használt JFET-es keverő.
+
+A keverők bemenetei lehetnek sima (single-ended) vagy differenciális jelek, akár csak a kimenetek. A Gilbert-cell pl. egy double-balanced mixer, azaz mindkét bemenete (és a kimenete is) differenciális. Ezek ha jól értem nem nagyon engedik át a bemeneteket.
+
+#### JFET-es keverő
+
+A bonyolult soktranzisztoros keverők helyett visszatértem az alapokhoz, és ezzel próbáltam meg egy keverőt tervezni.
+
+A bemeneti vivőhullám amplitúdóját kéne szabályozni a moduláló jel alapján. Ami rögtön az eszembe jutott, az egy ellenállásosztó valamilyen jelfüggő ellenállással. Ide viszont ajánlott lenne egy feszültségfüggő ellenállást használni, nem áramfüggőt. 
+
+Egy másik tranzisztortípust vettem hát elő, a JFET-et. Ezt a típust egészen jól leírja a "feszültségfüggő ellenállás" név, bár ahogy olvasom jobb lenne "feszültségre reagáló ellenállás"-nak hívni, mivel ez is legalább annyi változó paraméterrel van megáldva.
+
+Működését tekintve pont olyan, mint mikor a kerti slagra valaki rálép, és a lépés erejével szabályozza az átfolyó víz mennyiségét. Nem olyan bonyolult talán.
+
+Íme az én modulátorom:
+
+> (modulátor rajz)
+
+Működése baromi egyszerű: a gate feszültség változása miatt változik a FET ellenállása, és így a kimenő jel amplitúdója. Kicsit eljátszva a szimulátorban az alkatrészekkel találtam egy használható felállást.
+
+> (modulátor áramköri terv)
+
+Összeraktam pár alkatrészből, FET-nek a `BF244`-et választva, mivel ebből van egy pár itthon.
+
+> (megépített áramkör képe)
+
+Eredmény: fényes siker! Működik a moduláció
+
+> (modulált jel képe a szkópon)
+
+Először [a függvénygenerátoromat kötöttem rá](https://youtu.be/-Vt--0ubYpI), azután később [kipróbáltam zenével is](https://youtu.be/w8PXaoqKUH4).
+
+#### Konklúzió
+
+További teendők:
+- RF teljesítményerősítő építése
+- LPF (low-pass filter, aluláteresztő szűrő) építése
+- oszcillátorfokozat átgondolása?
