@@ -371,3 +371,20 @@ A kivetkező lépés a moduláció lenne. Eljátszottam a munkapont piszkálás�
 Másik próbálkozásként rádobtam még egy emitterkövetőt (kapacitívan csatolva az egyik drain-ről) ami egy trafót hajt, amelynek szekundere ismét hangolt LC kör. Egészen szépen működni látszik. Mivel csak az egyik drain-t használom kimenetnek, ezért a jelalak sem szép, és a moduláció sem szimmetrikus, viszont ezek nagy részét a hangolt tranfó ellensúlyozza: [működőképesnek látszó áramkör](https://www.falstad.com/circuit/circuitjs.html?cct=$+1+1e-8+22.512744558455275+50+5+43%0Aw+256+272+288+224+0%0Aw+288+224+336+224+0%0Aw+288+272+256+224+0%0Aw+256+224+208+224+0%0Aw+208+224+208+256+0%0Aw+336+224+336+256+0%0Ag+208+288+208+320+0%0Ag+336+288+336+336+0%0Ac+208+160+336+160+0+2.5e-9+-2.9842965909074666%0Al+208+192+336+192+0+0.000009999999999999999+-0.035362145216371585%0Aw+208+224+208+192+0%0Aw+208+192+208+160+0%0Aw+336+160+336+192+0%0Aw+336+192+336+224+0%0AR+208+128+224+64+0+0+40+5+0+0+0.5%0Ar+208+128+208+160+0+1000%0Ar+336+160+336+128+0+1000%0Aw+336+128+208+128+0%0Af+288+272+336+272+32+1.5+0.02%0Af+256+272+208+272+32+1.5+0.02%0AR+112+160+32+160+0+1+10000+3+0+0+0.5%0Ac+112+160+160+160+0+0.00001+-1.288062093400038%0Ar+208+160+160+160+0+10000%0At+400+192+448+192+0+1+-3.16833113747147+0.45258218254344196+100%0Aw+400+128+336+128+0%0AT+448+208+528+272+0+0.000009999999999999999+1+0.000004008556191096441+0.021282532368601354+0.999%0Ag+448+272+448+304+0%0Ac+528+272+528+208+0+2.5e-9+-1.3805142362200822%0AM+560+208+624+208+0+2.5%0Ag+528+272+528+304+0%0Aw+448+176+448+128+0%0Aw+448+128+400+128+0%0Ar+400+128+400+192+0+10000%0Ar+400+192+400+272+0+1000%0Aw+400+272+448+272+0%0Ac+336+192+400+192+0+1.0000000000000001e-7+1.2974740140269496%0Ar+560+208+560+272+0+1000%0Aw+560+272+528+272+0%0Aw+528+208+560+208+0%0Ar+336+160+384+160+0+1000%0Aw+384+160+384+96+0%0Aw+384+96+160+96+0%0Aw+160+96+160+160+0%0Ao+28+16+0+5130+5+0.1+0+1%0A)
 
 Persze jó kérdés hogy ezek az áramkörök a valóságban mennyire jól működnek. Nem is tudom hogy az itthoni MOSFET-ek bírják-e még ezt a frekvenciát, de elég valószínűtlen. JFET-el pedig sajnos nem igazán működik ez az elrendezés, aminek a pontos okát még nem értem, főleg mivel kb. semennyit nem néztem utána, a linkelt videót is 2 perc után félbehagytam. Majd ha ezeket végignéztem akkor lehet hogy többet fogok tudni...
+
+### Oszcillátor teszt - 2020.07.24
+
+Igazándiból nem sok érdekeset csináltam.
+
+Felépítettem az előző napon megtervezett oszcillátort. FET-nek egy `IRF7105`-öt használtam. Ez ránézésre egy SMD IC `SOIC8` tokban, de valójában két darab N csatorás MOSFET. Feltételezem ezek jól vannak illesztve.
+
+![SOIC8 tokozás](soic8.jpg)
+
+Kisebb nehézséget jelentett az IC bekötése, de csipesszel és rövidre vágott drótdarabokkal egész szépen megoldható. A keresztbekötést tekercselőhuzallal végeztem.
+
+A tekercs `10uH`-s, a két szárnynak kinéző elem pedig két kb. `5nF`-os kondi sorbakötve ami így kb. `2,5nF`. 
+
+Egészen jól néz ki ahhoz képest hogy nem működik:
+
+![Nem működő áramkör panelja 1](ccpair1.jpg)
+![Nem működő áramkör panelja 2](ccpair2.jpg)
