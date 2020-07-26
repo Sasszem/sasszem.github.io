@@ -415,19 +415,24 @@ Mindegyiknek vannak előnyei és hátrányai. Az AM viszonylag egyszerűbb, de j
 
 Az AM lényege hogy a jel amplitúdóját szabályozzuk egy másik jellel:
 
-> (AM moduláció)
+![AM moduláció](amjel.jpg)
 
 Alaposabban megnézve azt találjuk, hogy gyakorlatilag össze kell szorozni a két függvényt. Érdemes észrevenni hogy AM-ben a moduláló jelnek van egy egyenáramú (konstans) komponense. Ha ez nem lenne, ezt kapnánk:
 
-> (DSB-SC moduláció)
+![DSB-SC moduláció](dsbsc.jpg)
 
 Ez ha minden igaz, az úgynevezett `DSB-SC` (double sideband, suppressed carrier) moduláció.
 
 A moduláló jel váltakozó áramú és egyenáramú komponensének viszonya határozza meg a *modulációs mélységet*
 
-> (kis modulációs mélység képe)
-> (100%-os moduláció képe)
-> (100% fölötti moduláció képe)
+Kis modulációs mélység:
+![kis modulációs mélység képe](kismod.jpg)
+
+100%-os modulációs mélység
+![100%-os moduláció képe](100mod.jpg)
+
+Túl nagy modulációs mélység
+![100% fölötti moduláció képe](tulmod.jpg)
 
 Látható, hogy (a váltakozó komponenshez képest) túl alacsony egyenáramú komponens jelentősen torzítja a jelalakot, így nemkívánatos.
 [Béka írt nem is olyan régen erről](http://www.szetszedtem.hu/1174felharmonikusszuro/cbradiohoz.htm)
@@ -456,19 +461,17 @@ Működését tekintve pont olyan, mint mikor a kerti slagra valaki rálép, és
 
 Íme az én modulátorom:
 
-> (modulátor rajz)
+![modulátor rajz](jfetmodulator.jpg)
 
-Működése baromi egyszerű: a gate feszültség változása miatt változik a FET ellenállása, és így a kimenő jel amplitúdója. Kicsit eljátszva a szimulátorban az alkatrészekkel találtam egy használható felállást.
-
-> (modulátor áramköri terv)
+Működése baromi egyszerű: a gate feszültség változása miatt változik a FET ellenállása, és így a kimenő jel amplitúdója. Kicsit eljátszva a szimulátorban az alkatrészekkel találtam egy használható felállást: [áramköri terv](https://www.falstad.com/circuit/circuitjs.html?cct=$+1+3.125e-8+14.235633750745258+50+5+43%0Aj+288+240+352+240+32+-4+0.00125%0Ar+288+240+288+304+0+1000%0Aw+288+304+352+304+0%0Aw+352+304+352+256+0%0Ag+352+304+352+336+0%0Ar+352+224+352+160+0+220%0Ac+352+160+304+160+0+1.0000000000000001e-7+0.028761740778292078%0Ac+288+240+240+240+0+0.000001+-1.240803150385243%0AM+352+224+400+224+0+2.5%0AR+304+160+240+160+0+1+1000000+0.75+0+0+0.5%0AR+240+240+192+240+0+3+10000+2+0+0+0.5%0Ao+8+16+0+4098+1.25+0.1+0+1%0A)
 
 Összeraktam pár alkatrészből, FET-nek a `BF244`-et választva, mivel ebből van egy pár itthon.
 
-> (megépített áramkör képe)
+![megépített áramkör képe](modulatorpanel.jpg)
 
 Eredmény: fényes siker! Működik a moduláció
 
-> (modulált jel képe a szkópon)
+![modulált jel képe a szkópon](modulaltjel.jpg)
 
 Először [a függvénygenerátoromat kötöttem rá](https://youtu.be/-Vt--0ubYpI), azután később [kipróbáltam zenével is](https://youtu.be/w8PXaoqKUH4).
 
