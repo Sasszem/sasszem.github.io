@@ -52,18 +52,18 @@ Bármilyen ohmos fogyasztó, pl. fűtőszál teljesítményét lehet szabályozn
 (egy grafikonom sem mérethű, csak a függvény alakja a fontos!)
 
 Egyenáram és teljesítménye:
-![randa grafikon kézzel rajzolva](telj_konst.png)
+![randa grafikon kézzel rajzolva](telj_konst.jpg)
 
 PWM szabályozás és teljesítménye:
-![randa grafikon kézzel rajzolva](telj_pwm.png)
+![randa grafikon kézzel rajzolva](telj_pwm.jpg)
 
 A motornál ez működik is, sőt, pontosan ezt csinálom, de a váltakozóáramú fűtőszálnál más a helyzet. Eleve, az átlagos feszültség 0 - de persze a teljesítmény nem. Az általam használt technika, a fázishasítás a PWM "kiterjesztése" váltakozó áramra - azaz a ki és bekapcsolt állapotok idejének szabályozása.
 
 Váltakozó áram és teljesítménye:
-![randa grafikon kézzel rajzolva](telj_valto.png)
+![randa grafikon kézzel rajzolva](telj_valto.jpg)
 
 Fázishasításos szabályozás és teljesítménye:
-![randa grafikon kézzel rajzolva](telj_phasecut.png)
+![randa grafikon kézzel rajzolva](telj_phasecut.jpg)
 
 Az igen hülye ábra oka (már azon túl hogy nem rajzolok szépen) az, hogy a kapcsolóelem - a triak - elég körülményesen működik. Ha egyszer bekapcsolt, akkor amíg folyik áram, addig bekapcsolva is marad, akkor is ha nem kap már kapcsolójelet. Egyenáramra éppen ezért nem túl praktikus, de a váltakozó áramnál akárhányszor csomópont (nullátmenet) van, kikapcsol.
 
@@ -74,7 +74,7 @@ A teljesítmény a bekapcsolás megfelelő időzítésével szabályozható - mi
 Ehhez azonban a vezérlőnek tudnia kell, mikor megy át a feszültség a nullponton (mivel a fűtőszál gyakorlatilag tisztán ohmikus, nincs fáziseltérés a feszültség és áram között). Erre egy egyszerű áramkört építettem, a csomópont-érzékelő (zero-crossing detector - ZCD) egy egyenirányítóból, védőellenállásból optocsatolóból és felhúzó ellenállásból áll. A leden végig folyik áram, ami kinyitja a tranzisztort, és lehúzza az ellenállást 0V-ra. Amikor csomópont van, az áram 0, a led kialszik, és a tranzisztor is kikapcsol, a feszültség pedig 5V lesz.
 
 Sajnos a ZCD kapcsolási rajza eltűnt a projektből:
-![zcd rajz](zcd.png)
+![zcd rajz](zcd.jpg)
 
 ### A vezérlés
 
