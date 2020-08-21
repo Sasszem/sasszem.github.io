@@ -481,3 +481,29 @@ További teendők:
 - RF teljesítményerősítő építése
 - LPF (low-pass filter, aluláteresztő szűrő) építése
 - oszcillátorfokozat átgondolása?
+
+### RF erősítő + projekt lezárás?
+
+(kicsit jóval később írom ezt, úgyhogy inkább rövidre fogom hogy kevesebbet tévedjek - no meg egy fél képet sem találtam meg abból amit csináltam)
+
+Terveztem egy egytranzisztoros erősítőt, ami a modulátor kimeneti jelét (kb. `800mV` csúcstól csúcsig) kicsit felerősítené. Mivel az oszcillátor nem működik 9V alatt, így ezt a tápfeszültséget használva elég nagy a mozgásterem. Még nem voltam benne biztos (és ma sem vagyok igazán) hogy a nagyobb távolsághoz nem hangolt antenna esetén nagyobb feszültség vagy nagyobb áram kell, így első körben egy emitterkapcsolású áramkört terveztem, amely főként a feszültséget erősíti - ehhez könnyen kapcsolható lesz egy kollektorkapcsolás, amely pedig az áramot erősítené jelentősen.
+
+A emitterkapcsolás feszültségerősítése a kollektor és emitter ellenállások arányától függ. Az alkatrészes dobozban keresgélve a `6.8k` és `1k`-s értékeket választottam, ami kb. `5.44V`-os kimeneti feszültséget jelentene - kicsit talán kicsi a `9V`-os táphoz képest, de első körben megteszi, és a nagyobb mozgástér akár segíthet is. A munkapontot A osztálynak megfelelően állítottam be (egy poti segít ebben, hogy minél pontosabban beállítható legyen).
+
+Az erősítő erősítése frekvenciafüggő, minél nagyobb frekvencián használjuk, annál kisebb. Mivel a tranzisztor amit használtam (`BC238`) valamivel több mint `100MHz`-s határfrekvenciával rendelkezik, nem kéne jelentősen csökkennie az erősítésnek.
+
+Az áramkör egészen jól működött, de elég sokáig tartott erre rájönnöm...
+
+Megmérve a kimenő jelet szkóppal, a bemeneti paramétereket frekvenciagenerátorral utánozva jelentősen kisebb jelet mértem mint kellett volna - olyan `7-800mV`-ot - azaz erősítés helyett maximum tartotta a feszültséget. Leginkább az imént említett nagyfrekenciás hatásra gyanakodtam.
+
+Ezen hatás egyik kompenzálási módja egy kondenzátor párhuzamosan kötése az emitterellenállással. Gondoltam kipróbálom - sajnps már nem találom a szép fotókat a jelalakról, úgyhogy csak körülírni tudom hogy mennyire háromszögletű volt... Konkrétan maximum 10dB-veel elnyomott második felharmonikusakat tartalmazott, és 100kHz-ről hajtva a 10. felharmonikus még mindig zavarta az AM vételt az erősítő közelében... Az áramkört mindenesetre megjegyeztem, mert igen kiváló frekvenciatöbbszöröző lehetne belőle kis szűréssel és további A osztályú erősítéssel...
+
+Keresvén a gyenge jelek okát, [írtam egy kérdést az electronics stack exchange-re](https://electronics.stackexchange.com/questions/514379/common-emitter-bandwidth-and-probing/), ami alapján még hülyébbnek tűnök mint szoktam.
+
+Long story short: a mérést basztam el. Baromi kezdő hiba. A 100mHz-s kiciócó kínai mérővezeték (ami egyébként egy jó vétel volt, amúgy egy igazi max quality cuccal is simán el lehet követni ezt a hibát) akkor 100MHz-s, ha x10-es módba kapcsolom - amúgy egyrészt csak kb. 1MHz-s, másrészt elég nagy kapacitással rendelkezik hogy jelentősen terhelje az áramkör kimenetét és ennek örömére (a bazi nagy kimeneti impedancia miatt) a feszültség szépen lecsökkenik. Állítólag baromi gyakori kezdő hiba, de három napom ráment mire megtaláltam. Az erősítés valamivel kisebb mint 6.8, de simán belefér - egy 10k-s kollektorellenálllás valószínűleg egészen jó választás lenne ide, feltéve hogy nem gondolom meg magam a szokatlanul alacsony kollektorárrammal.
+
+Amúgy az adó hatótávja nem lett sokkal nagyobb, de azért érezhetően használt neki az erősítő.
+
+#### És egy lezárás, sort of
+
+Ez egy baromi fun projekt, és inkább csak felfüggesztem mint lezárom most. A helyzet az, hogy lassan vége a nyárnak, és kezdődik a kollégiumi beköltözés, de méginkább az egyetem. Mivel nem óhajtok az első félév után kibukni, nem ártana valószínűleg elég sokat tanulni, amelynek egyenes következménye hogy nem éppen lesz sok időm ilyen projektekre. Egy másik tényező pedig az, hogy (ha nem is feltétlen az első félévben) de fogunk mi annyi munkapontbeeállítást, váltakozóáramú áramköröket és analóg kapcsolást tanulni, hogy majd én is csodálkozva olvasom vissza ezt a naplót hogy mégis hogy unatkozhattam én annyira hogy önként ezeket akartam a szabadidőmben tanulni...
