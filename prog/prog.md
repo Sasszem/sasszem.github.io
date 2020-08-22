@@ -8,5 +8,6 @@
 - [sweep-r - egyszerű aknakereső svelte-vel](sweep-r.md) 
 - [YALG - egyszerű reaktív Löve2d GUI keretrendszer](yalg.md)
 - [RTTT - Rust tic-tac-toe](rttt.md)
+- [futásidőelemzés a gyakorlatban, és egy érdekes anomália](futasido/futasido.md)
 
 [Főoldalra](../README.md)
