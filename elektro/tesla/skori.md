@@ -16,8 +16,12 @@ A mechanikai felépítés elég egyszerű volt, a doboz eredetileg talán egy te
 
 A szekundert sikerült sajnos párszor majdnem tönkretennem, de sikerült mindig kijavítani, és inkább lelakkoztam jó erős lakkal, így már majdhogynem gránátbiztos.
 
-Videó a tekercsről:
+Videók a tekercsről:
 
 <iframe width="1519" height="554" src="https://www.youtube.com/embed/oZT6QXziXcY?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="1519" height="554" src="https://www.youtube.com/embed/gpOH-WP2XgM?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="1519" height="554" src="https://www.youtube.com/embed/T2JvNp0kqoA?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 [Vissza](../elektro.md)
