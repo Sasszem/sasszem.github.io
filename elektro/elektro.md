@@ -6,10 +6,10 @@
 - [kínai forrasztóállomás-készlet összeszerelése](solderingstation/ST.md)
 - [tervezzünk rádióadót(in progress projekt)](amado/amado.md)
 - karácsonyi LED díszek
-- Skori féle miniteslám
+- [Skori féle miniteslám](tesla/skori.md)
 - Flyback alapú HV PSU
 - Flyback bohóckodás
-- Slayer exciter mikrotesla
+- [Slayer exciter mikrotesla](tesla/slexciter.md)
 - IoT asszisztált szabadtéri játék
 
 (projektek feltöltés alatt)
