@@ -112,22 +112,7 @@ Van pár marék Z80-as cuccom, mellé EEPROM, SRAM és társai amit fel tudok ma
 
 #### EMG kalibráció / javítás
 
-Az EMG-4656-os szkópom elromlott, brummos volt.
-
-A HE fóromon azt javasolták cseréljem ki az elkókat, majd amikor írtam hogy sikerült őket kiműteni, alaposan lecsesztek hogy miből gondolom hogy azokkal van a baj... A régi elkók jónak tűnnek, és sikerült valahogy visszaszerelni őket, és újra volt (brummos) kép.
-
-Úgy gondoltam hogy a szkóp újrakalibrálása segíthet, ha más nem akkor megtalálhatnám a hiba forrását. A gépkönyv kalibrációs leírása viszont igencsak érdekes:
-- az ábrák hivatkozásai teljesen hibásak, ha azt mondják hogy valamit az 5-ös ábrán keress akkor csak az biztos hogy nem az 5-ös ábrán lesz
-- semmilyen leírás nincs az egyes alkatrészek / beállítószervek helyéről, csak a hibás ábrahivatkozások
-- a leírás pár helyen hibás, nem létező alkatrészeket említ illetve rossz beállítószervekre hivatkozik.
-
-Az ilyen hibák javítására átírtam a leírást egy új dokumentumba. Leírtam minden alkatrésztől ami előfordul hogy hol kell keresni, illetve a hibás részeket is javítottam. Elég sok időm ráment mire mindent megtaláltam ami kellett...
-
-Amikor bekapcsoltam hogy elkezdjem a kalibrálást, nem jelent meg a fénycsík, és a nagyfeszültség dobozában valami világított. Mivel nincs merítőellenállás a kondikon, így félreraktam egy darabig hogy biztonságos legyen belenézni (na meg akkoriban érettségiztem). Lehet hogy a nagyfeszültségű dobozban valamit egy picit elgörbítettem amikor próbáltam kideríteni hogy melyik poti melyik?
-
-Amikor újra elővettem, a nagyfesz doboz csendben maradt, nem volt csőfűtés sem. Elkezdtem mérni a tápfeszültségeket - a -45V-on -60V-ot mértem! Véletlenül rövidre zártam ezt a tápfeszt a kondinál (a kondi fémburkolata és kivezetése között a mérőzsinórral). Ekkor megjelent a csőfűtés, és a tápfesz is megmaradt. Valamivel később mindkettő eltűnt, és azóta sem jutottam vele többre...
-
-Ha legközelebb előveszem akkor megkeresem a tápfesz útját a trafótól, és megpróbálom kideríteni hogy miért nem jók a tápfeszültségek. Remélhetőleg velük együtt a nagyfeszültség, és azzal a kép is visszajön.
+[(Saját aloldalra mozgattam)](elektro/emgrep/repair.md)
 
 #### DOS PC
 

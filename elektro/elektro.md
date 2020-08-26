@@ -11,6 +11,7 @@
 - Flyback bohóckodás
 - [Slayer exciter mikrotesla](tesla/slexciter.md)
 - IoT asszisztált szabadtéri játék
+- [EMG szkópom javítása](emgrep/repair.md)
 
 (projektek feltöltés alatt)
 
