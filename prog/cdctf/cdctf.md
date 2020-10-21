@@ -18,16 +18,20 @@ Még volt egy kis erőm a verseny után, így az egyiknek nekifogtam. Elég gyor
 ### Információgyűjtés
 
 Bedoobtam a discordon átküldött file-t WSL-be, majd nyomtam rá egy `file`-t:
+
 ![file.png](filecmd.png)
+
 Tehát egy 64 bites linux binary (~exe file), dinamikus linkeléssel. Eddig nem feltétlen para...
 
 "`stripped`" na ez viszont már érdekesebb, nem tartalmaz szimbólumokat, azaz kitöröltek belőle majdnem minden információt arról hogy mi hol van benne, nekem kell újra összeraknom (és elneveznem) mindent. Elég egyszerű ámde hatékony módja hogy megnehezítse a visszafejtést...
 
 Indítsuk el a programot:
+
 ![](lassanir.gif)
 
 Aranyos. Szép animált kiírással feltesz egy eldöntendő kérdést.
 Két tippből el lehet találni hogy a *"no"* választ várja (bármi másra kilép), és folytatja:
+
 ![folytatas.png](folytatas.png)
 
 Habár itt is egy eldöntendő kérdésünk van, sajnos sem a *"no"*, sem a *"yes"* választ nem fogadja el, hanem kilép. További próbálkozással sem jutottam tovább ezen a fronton...
@@ -37,6 +41,7 @@ Habár itt is egy eldöntendő kérdésünk van, sajnos sem a *"no"*, sem a *"ye
 Bár látszólag egyértelmű a legtöbb amit csinál, mégis érdemes lehet megnézni hogy milyen függvényhívásokat csinál a szabványkönyvtárba. Futtattam hát egy `ltrace`-t rajta:
 
 ![](ltrace.png)
+
 No hát ez kérem egészséges. Összeomlott a program!
 
 Tekintve hogy ilyet korábban nem tett, gyanús hogy nem akarja hogy így elemezzem és ezért nyírta ki magát...
@@ -59,6 +64,7 @@ TracerPid:      334
 Ebben a sorban alapból 0 van, így viszont egy másik szám...
 
 Esetleg még megpróbálhatnánk nyomonkövetni a történéseket `GDB`-vel is:
+
 ![](gdb.png)
 
 Hasonló hibajelenség, a program kardjába dőlt...
@@ -74,9 +80,11 @@ Mivel GDB-vel sem mentem sokra ebben a formában, ráeresztettem egy másik eszk
 Ezzel már jutottam valamire, beazonosítottam hogy hol és hogyan keresi meg a `TracerPID`-t a `/proc/self/status`-ban, és ha nem 0, hogyan lép ki.
 
 Pár feltétel patchelése után azt hittem sikerül ezután jobban belenéznem, de sajnos csak egy kicsivel lett jobb a helyzet:
+
 ![](ltrace_patched.png)
 
 `GDB`-vel sem lett jobb:
+
 ![](gdb_patched.png)
 
 Ellenben `strace`-el már működik, nem omlik össze (bár ezt élesben nem próbáltam ki, csak így utólag ahogy írom jöttem rá):
@@ -104,6 +112,7 @@ gdb -p `pidof babypk`
 
 Siker!
 A program megáll, és szabadon szétnézhetek a memóriájában!
+
 ![](gdb_valahol.png)
 
 Na de mit érdemes megnézni? Hol a lényeg?
@@ -111,6 +120,7 @@ Na de mit érdemes megnézni? Hol a lényeg?
 Azt már tudom hogy éppen hol tartott a végrehajtás, no de hogyan jutott oda?
 
 Ha a függvényhívások követik a megszokást, azaz a visszatérési címet a stack-re rakják,  akkor megtudhatjuk a `backtrace` paranccsal:
+
 ![](gdb_backtrace.png)
 
 Több információt kaptam mint reméltem volna, mert a `__libc_start_main` függvény alapján még a `main` függvényt is megtalálta!
@@ -118,9 +128,11 @@ Több információt kaptam mint reméltem volna, mert a `__libc_start_main` füg
 Sajnos a binary még mindig stripped, szóval sem a `disas main`, sem a `disas *0x403e6d` nem működik.
 
 Működik viszont a `x/64i 0x403e6d`:
+
 ![](gdb_main_att.png)
 
 Sajnos az `AT&T`-s assembly szintaxist nem ismerem jól, de szerencsére a `GDB` tud `Intel`-est is, csak kérni kell: `set disassembly-flavor intel`
+
 ![](gdb_main_intel.png)
 
 Innen már könnyű elindulni...
@@ -135,7 +147,9 @@ Ilyen módon megszereztem a teljes `main` függvényt, és elmentettem egy fileb
 
 A `main` viszont hív más függvényeket, ezek címét is vissza lehet keresni hasonlóan és a függvényt elmenteni fileba, majd az azok által hívottakat is, és így tovább...
 
-Néhány függvény `libc`-s függvény, ezeket szerencsére a `GDB` be tudja azonosítani:
+Néhány függvény `libc`-s függvény, ezeket 
+szerencsére a `GDB` be tudja azonosítani:
+
 ![](gdb_libc.png)
 
 Elkezdtem a függvényhívásokat (`call` utasításokat) kommentelni, hogy hova mutatnak, illetve a `grep . -r -e "call" | grep -v ";"` paranccsal olyan `call` utasításokat keresni amik mellett még nem szerepel komment...
@@ -195,6 +209,7 @@ KosmX-nek is elküldtem, de aki a feladatot küldte is elárulta a megoldást (a
 Ez "mátrix" akar lenni, csak éppen 1337. Kérés hogy melyik mátrix - a lineáris transzformáció vagy a film amelyikben az informatikus fejberúgja az "efbíájost"...
 
 Kipróbálva ezt a bemenetet a program újabb szöveggel fogad:
+
 ![pills.png](pills.png)
 
 Na jó, hazudtam, egy percig sem merült fel bennem hogy ne a filmre gondoljon...
@@ -206,9 +221,11 @@ Azt hiszem nem nagy meglepetés, hogy itt megint csak egy statikus ellenőrzés 
 ### És a végső csata...
 
 No de az utolsó!
+
 ![last_time](last_time.png)
 
 Viszonylag hamar kiszúrtam ezt:
+
 ![](printf.png)
 
 Szóval kiír valamit gyanúsan flag formátumban
@@ -222,6 +239,7 @@ Ami ebből fontos hogy megvan néhány string objektumom a stack-en.
 A következő inputom feldolgozása elég sok és érdekes lépésből áll.
 
 ![](beolvas_lencheck.png)
+
 Először is ugye beolvassa egy `std::string` objektumba. Beolvasás után ellenőrzi a hosszát - 29 karaktert kell beírnunk.
 
 
@@ -235,6 +253,7 @@ Ezután egy egyszerű formátumellenőrzés. Az 5. 10. 15. 20. és 25. karaktere
 Ez alapján a formátum `AAAA-BBBB-CCCC-DDDD-EEEE-FFFF` lesz.
 
 Ezután szétszedi 6 részstringre (a 6 4 betűs bemenet alapján), de még végez rajtuk valami extrát is...
+
 ![](szetszed.png)
 
 A végrehajtott függvény működését dinamikus analízissel fejtettem meg, ugyanis kódolás után megnézve a sztringek tartalmát, az eredeti bemenetemet láttam viszont `Base64`-ben kódolva...
@@ -252,6 +271,7 @@ Ezek táblázatok kigenerálásához a kódoló "függvényeket" kimásoltam, é
 Ez exportálja a hat kódolófüggvényt, amit így már használhatunk is...
 
 Az eredeti kódban elég egyszerű megtalálni hogy mivel hasonlítja össze a hat eredményt:
+
 ![](taroltak.png)
 
 
