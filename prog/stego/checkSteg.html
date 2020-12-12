@@ -1,0 +1,34 @@
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+    <script>
+        const dataStreams = [
+            "U2FsdGVkX18+RR0TlnUt4FhPFdFtDnh8C7SR2asesrOQzth08Tnqjr/CCW0uyNo38II/Ml/JuOTbsHwCXuWRBIIFZfAOAF8K66cdAlt8XiDouVk1JCEC21m1Cqz1YLLVcutwXw9uGq10teutD+K5+HsszsYKcgkaceAtr1GCBU1skGD+ifMXCI/anz1zcPudG9CiDrXQPijkgppaK5jn9jeGTlVF0/GebQTAauSsAatKewyL5AN8O3IC4qugKAaJfj/jooNNJeT7AzmvSgimhQAhdDaNA7H9g0Z+TbZav6MQwdM0DGKbKgOFcYTvUcqF",
+            "U2FsdGVkX1+AscJRXh5WkRcbTkKzh+Y12vfbD0+T7rdTvKMRjKi03yGqyubZ9pZRLyVA/dW8PEKF6vTYq/zXNiNHOtdH3QNytXrnj6sDs4HbpFRZWd5OXuPwwK2I5e6t",
+        ];
+
+        function check() {
+            const flag = document.getElementById("flag").value;
+            for (let stream of dataStreams) {
+                try {
+                    document.getElementById("holder").innerHTML = CryptoJS.AES.decrypt(stream, flag.toLowerCase()).toString(CryptoJS.enc.Utf8);
+                } catch(error) {
+                    
+                }
+            } 
+        }
+    </script>
+    <style>
+        body {
+            background-color: dimgrey;
+        }
+    </style>
+    <body>
+        <h1>The image:</h1>
+        <img src="output.png">
+        <h1>The flag:</h1>
+        <p>Format guide:<br>The flag only consist of alphabethical characters and maybe also whitespaces. It does NOT contain punctuation or numbers, and it's also meaningful.</p>
+        <input id="flag" />
+        <button onclick="check()">Check</button>
+        <div id="holder"></div>
+    </body>
+</html>
