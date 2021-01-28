@@ -45,9 +45,11 @@ Még akár értelme is lenne ezeknek a neveknek, ha nem ugyanannak a függvényn
 ### dQw4w9WgXcQ
 
 Ehhez csak ennyit fűznék hozzá:
+
 ![dQ.jpg](dQ.jpg)
 
 [Aki nem hiszi, az járjon utána!](https:///youtube.com/watch?v=dQw4w9WgXcQ)
+
 Ez egyben egy hint is volt a következőre:
 
 ### lahpnRVxkU8
@@ -89,7 +91,7 @@ Ha olyan $E$-t találunk amely két szám szorzata, akkor a fenti kongruenciába
 
 $n$-t általában két **nagyon** nagy prím szorzatát választják (továbbiakban $p$ és $q$). Ha ismerjük a prímeket, akkor $\varphi(n)$ nagyon könnyen számítható, de a prímek ismerete nélkül ez nagyon reménytelen.
 
-A valós RSA-eljárásban $\varphi(n)$ helyett $\lambda(n)$-t használják, amely ebben az esetben könnyen számítható: $\lambda(n)=lcm(p-1, q-1)$
+A valós RSA-eljárásban $\varphi(n)$ helyett $\lambda(n)$-t használják (Carmichael-féle tóciensfüggvény), amely ebben az esetben könnyen számítható: $\lambda(n)=lcm(p-1, q-1)$
 
 Az RSA-eljárás kulcsgenerálása tehát:
 - választunk két nagyon nagy prímet ($p$ és $q$)

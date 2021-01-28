@@ -1,0 +1,62 @@
+# printf
+
+Ez az összes közül a legösszetettebb feladat, viszont ebből lehet a legtöbbet tanulni
+
+FIGYELEM! Míg a többi feladatnál igyekeztem felhívni a figyelmet a különféle platformok közötti különbségre, itt kizárólag a 64 bites Intel-architektúrán futó linux alkalmazásról írok!
+
+## Analízis
+
+A feladat ismét egy változó (`admin`) átállítása lenne - viszont a korábbi feladványokban szereplő módszerek egyike sem használható.
+
+A program lefordításakor a következő figyelmeztetést kapjuk (GCC esetén): 
+```
+pwnme.c: In function ‘main’:
+pwnme.c:14:12: warning: format not a string literal and no format arguments [-Wformat-security]
+   14 |     printf(name);
+      |
+```
+
+Azaz a [cursed heap](cursedheap.md)-hez hasonlóan ismét egy formátumot kellhet majd írnunk.
+
+## Áttekintés
+
+- megtudunk egy memóriacímet amely egy lokális változóhoz tartozik, de nem az `admin`-ét
+- megtudjuk hogy hány bájtosak a programban a memóriacímek és a `long` típusú változók (8-8 bájt)
+- beírhatunk egy 100 karakteres szöveget és egy `long` számot
+- a 100 karakteres szöveget `printf()`-eli a program
+
+Ezekből a darabokból lehet tehát építkeznünk.
+
+## Printf
+
+Úgy tűnik, hogy a változó felülírására nincs más módunk, mint valahogy a `printf`-et használni.
+
+Beleolvasva a `printf format string` [wikipédia-szócikkébe](https://en.wikipedia.org/wiki/Printf_format_string), megtudhatjuk hogy a `%n` formátummal írni lehet - mégpedig az eddig kiírt karakterek számát egy `int*` pointerrel átadott címre.
+
+A probléma csak az, hogy a `printf` hívás nem kap semmilyen paramétert - tehát úgy tűnik hogy csak vaktában tudunk lövöldözni, és így nem sok esélye van annak hogy eltaláljuk az `admin` változót.
+
+A változó címe egyébként viszonylag könnyen kitalálható, hiszen a közvetlen szomszédja az ismert című `s` változónak, így a címeik különbsége 8 lesz - maximum két próbálkozás elég ehhez, de le is tesztelhetjük a program apró módosításával - 8-at kell hozzáadni a címhez.
+
+## Paraméter
+
+A probléma viszont most az, hogy ezt a címet át kéne adni paraméterként a `printf`-nek, de a kódban nincs ilyesmi.
+
+Felidézhetjük viszont, hogy mit tudunk C-ben a lokális változók tárolásáról - a verem-memóriában kapnak ezek helyet - és ugyanezt használjuk paraméterek átadására is! Tehát az adat valahol ott van, csak ki kell találni hogy pontosan hol, és megmondani a `printf`-nek is.
+
+(tapasztalatom szerint 6-7. paraméter lesz)
+
+A könnyebb eléréshez használhatjuk a `printf` egy (nem platformfüggetlen, linuxra jellemző) formátumát, a paraméter-indexelést: `%6$d` a 6. paramétert írja ki `%d` formátummal. Ezzel már elég gyorsan megkereshetjük az általunk beírt számot, elég pár esetet végigpróbálni.
+
+## Megoldás
+
+Tehát a megoldás:
+- kapott címet átírni decimálisba, hozzáadni 8-at
+- névnek beírni `A%6$n`-t (vagy ahanyadik nálunk, az `A` azért kell hogy kiírjunk egy karaktert és a `%n` így ne 0-t írjon)
+- beírni a számított címet
+- you won
+
+Ezt a feladványt sajnos senki sem oldotta meg, amit igazán sajnálok, de ez nagyságrendekkel nehezebb is volt mint az többi.
+
+Bárkinek, akit érdekel az ilyesmi, ajánlom [LiveOverflow](https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w) videóit, különösen a [Binary Exploitation](https://www.youtube.com/watch?v=iyAyN3GFM7A&list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN) sorozatot, illetve VIK-eseknek a KSZK-s SecuriTeam-be való belépést!
+
+[Vissza](cpuzzles.md)
