@@ -2,7 +2,7 @@
 
 Ez az összes közül a legösszetettebb feladat, viszont ebből lehet a legtöbbet tanulni
 
-FIGYELEM! Míg a többi feladatnál igyekeztem felhívni a figyelmet a különféle platformok közötti különbségre, itt kizárólag a 64 bites Intel-architektúrán futó linux alkalmazásról írok!
+FIGYELEM! Míg a többi feladatnál igyekeztem felhívni a figyelmet a különféle platformok közötti különbségre, itt kizárólag a 64 bites Intel-architektúrán futó Linux alkalmazásról írok!
 
 ## Analízis
 
@@ -51,7 +51,7 @@ A könnyebb eléréshez használhatjuk a `printf` egy (nem platformfüggetlen, l
 
 Tehát a megoldás:
 - kapott címet átírni decimálisba, hozzáadni 8-at
-- névnek beírni `A%6$n`-t (vagy ahanyadik nálunk, az `A` azért kell hogy kiírjunk egy karaktert és a `%n` így ne 0-t írjon)
+- névnek beírni `A%6$n`-t (vagy éppen hányas számú nálunk, az `A` azért kell hogy kiírjunk egy karaktert és a `%n` így ne 0-t írjon)
 - beírni a számított címet
 - you won
 

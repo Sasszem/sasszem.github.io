@@ -14,7 +14,7 @@
 
 ## Sztoritájm
 
-Ennek a feladatnak van egy kis története is. A BME-VIK Villamosméröki képzésén az idei utolsó beadandó "Programozás Alapjai 1" tárgyból egy hallgatói visszajelzés volt - azaz írjuk ki `stdout`-ra hogy mi tettszett a kurzusban, és `stderr`-re hogy mi nem.
+Ennek a feladatnak van egy kis története is. A BME-VIK Villamosmérnöki képzésén az idei utolsó beadandó "Programozás Alapjai 1" tárgyból egy hallgatói visszajelzés volt - azaz írjuk ki `stdout`-ra hogy mi tettszett a kurzusban, és `stderr`-re hogy mi nem.
 
 Ezt a nagyon nehéz feladatot ~ két sorban meg lehet csinálni, de persze az *túl egyszerű lenne* úgyhogy megírtam ezt a programot - és mivel egészen jól sikerült összekuszálnom egy egyszerű kiírást, feladtam feladatnak hogy aki tudja, fejtse vissza és írja át...
 
@@ -59,11 +59,11 @@ Randall amúgy a világ leg... beszívottabb DevLog-jait csinálja, érdemes vé
 
 ### base64
 
-- ZWxzb1BhcmFtZXRlcg -> elsoParameter
-- bWFzb2Rpa1BhcmFtZXRlcg -> masodikParameter
-- dXRvbHNvUGFyYW1ldGVy -> utolsoParameter
+- ZWxzb1BhcmFtZXRlcg -> `elsoParameter`
+- bWFzb2Rpa1BhcmFtZXRlcg -> `masodikParameter`
+- dXRvbHNvUGFyYW1ldGVy -> `utolsoParameter`
 - dmFsYW1pUmFuZG9tVmFsdG96bw -> 
-valamiRandomValtozo
+`valamiRandomValtozo`
 
 Legalább a számozás itt jó volt
 

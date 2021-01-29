@@ -28,7 +28,7 @@ A pontos részletek (előtte vagy utána, pontosan mennyivel) akár változhatna
 
 Tehát "balra" kell 128+1-et menni, és ott találjuk az int-ünket?
 Részben - az int ugye minimum 2 bájtot foglal C-ben, tehát VALAMELYIK bájtját találjuk ott.
-Amit viszont át kéne majd írnunk, az a "legalsó" bájtja. Az int bájtjai kétféleképpen lehetnek a memóriában - először a legfelső, vagy először a legalsó - tehát vagy kapásból a jó bájton álltunk meg, vagy még menni kell párat (4 byteos int esetén 3-at).
+Amit viszont át kéne majd írnunk, az a "legalsó" bájtja. Az int bájtjai kétféleképpen lehetnek a memóriában - először a legfelső, vagy először a legalsó - tehát vagy kapásból a jó bájton álltunk meg, vagy még menni kell párat (4 bájtos int esetén 3-at).
 (be kell valljam olyanról még nem hallottam hogy valakinek az otthoni gépén 3-at kelljen menni még, mindenkinek pont a legalsó volt ott)
 
 Tehát a terv:

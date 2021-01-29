@@ -28,9 +28,9 @@ Ezután `scanf()`-el beolvasunk 128 karaktert (egy újonnan foglalt pufferbe), �
 
 Egy nehézség még hátra van: a beírandó érték a 4096 elemű tömb végén található, de a program csak 128 karaktert olvas tőlünk.
 
-A megoldás, amit a hibaüzenet is sugallt: `snprintf`. Ha egy `*printf`-es formátumot írnunk be, könnyen rávehetjük az `snprintf`-et hogy írjon több karaktert mint ahányat kapott. Erre egy jó módszer egy `padding` beállítása lehet ([példa](https://stackoverflow.com/a/293448/4379569)), de sajnos ahhoz kéne egy formázandó érték is.
+A megoldás, amit a fordítás során kapott figyelmeztetés is sugall: `snprintf`. Ha egy `*printf`-es formátumot írnunk be, könnyen rávehetjük az `snprintf`-et hogy írjon több karaktert mint ahányat kapott. Erre egy jó módszer egy `padding` beállítása lehet ([példa](https://stackoverflow.com/a/293448/4379569)), de sajnos ahhoz kéne egy formázandó érték is.
 
-Egy elsőre meglepő dolog a `*printf` függvényekkel, hogy hogyan viselkednek ha hibás formátunot kapnak. Ha kipróbáljuk a `printf("%d\n");`-t akkor valamilyen hibát várnánk, de helyette csak kiír egy számot, ami "hülyeség" (valójában van benne rendszer, de ez most annyira nem fontos). 
+Egy elsőre meglepő dolog a `*printf` függvényekkel, hogy hogyan viselkednek ha hibás formátumot kapnak. Ha kipróbáljuk a `printf("%d\n");`-t akkor valamilyen hibát várnánk, de helyette csak kiír egy számot, ami "hülyeség" (valójában van benne rendszer, de ez most annyira nem fontos). 
 
 A lényeg viszont, hogy minket nem zavar ha egy hülyeség számot ír ki, csak az a fontos, hogy ezt is tudjuk formázni.
 
