@@ -9,5 +9,6 @@
 - [YALG - egyszerű reaktív Löve2d GUI keretrendszer](yalg.md)
 - [RTTT - Rust tic-tac-toe](rttt.md)
 - [futásidőelemzés a gyakorlatban, és egy érdekes anomália](futasido/futasido.md)
+- [babypk - writeup egy érdekes CTF feladványhoz](cdctf/cdctf.md)
 
 [Főoldalra](../README.md)
