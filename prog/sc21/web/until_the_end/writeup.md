@@ -140,5 +140,4 @@ with open("phpfuck.php") as fin:
             l = l.replace(r[0],f"'{r[1]}'")
         #l = l.replace("'.'","")
         fout.write(l)
-        
 ```
