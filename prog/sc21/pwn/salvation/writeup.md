@@ -20,7 +20,7 @@ Uncompressing the archive, we can see the full Rust source code of the challenge
 It seems it generates a few random 64 bit numbers, expects us to XOR them 2 bits at a time to make them zero, then if all are zero, we get the flag.
 
 Of course, that is unlikely to happen. If we follow the hint, and look for the `unsafe` keyword, we can only see one use:
-```Rust
+```rust
 fn challenge() {
     let mut labyrinths: [u64; LABYRINTH_COUNT] = [0; LABYRINTH_COUNT];
     labyrinths.iter_mut().for_each(|lab| *lab = rand::random());

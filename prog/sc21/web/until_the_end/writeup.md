@@ -21,7 +21,7 @@ After that, I've randomly googled `PHPFuck` and found [this github repo](https:/
 (meme by `rnbwdsh`)
 
 So, I've worked on un-fucking the script. It's not that hard, it's just making characters and concatenates them into code, then passes it to `create_function`. It mostly follows the pattern of `(char).(char).(char)`. With a PHP shell to eval the characters I've managed to search-replace all of them and reverse the code:
-```PHP
+```php
 <title>Only those who endure until the end</title>
 <?php 
 highlight_file(__FILE__);
