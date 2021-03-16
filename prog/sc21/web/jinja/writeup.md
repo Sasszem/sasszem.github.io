@@ -14,7 +14,7 @@ https://jinja-ninja.secchallenge.crysys.hu
 _author: Pepe_
 
 ## Notes
-
+{% raw %}
 <del>**I could not solve this challenge**</del>
 
 `Jinja` instantly triggers me to think about SSTI and Flask. Sadly, I could not find *ANY* reflection on the webpage we are given, it just returned the same page no matter what I've sent to it.
@@ -68,4 +68,5 @@ async function solve(length = 145) {
     }
 }
 ```
+{% endraw %}
 And that just got me the flag...
