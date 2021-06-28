@@ -1,6 +1,7 @@
 ---
 title: Avalanche-impulzusgenerátor
 layout: post
+category: elektro
 ---
 
 {% include imgpath.md %}

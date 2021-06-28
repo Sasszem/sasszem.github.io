@@ -1,6 +1,7 @@
 ---
 title: Egyszerű csináld magad forrasztópáka
 layout: post
+category: elektro
 ---
 
 {% include imgpath.md %}

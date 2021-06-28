@@ -1,6 +1,7 @@
 ---
 title: Forrólevegős forrasztóállomás
 layout: post
+category: elektro
 ---
 
 {% include imgpath.md %}

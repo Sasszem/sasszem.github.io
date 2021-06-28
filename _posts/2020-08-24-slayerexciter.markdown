@@ -1,6 +1,7 @@
 ---
 title: Slayer exciter minitesla
 layout: post
+category: elektro
 ---
 
 {% include imgpath.md %}

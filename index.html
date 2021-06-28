@@ -4,3 +4,7 @@
 
 layout: home
 ---
+
+{% assign postslist = site.posts %}
+
+{% include postslist.html posts=postslist %}

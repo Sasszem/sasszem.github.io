@@ -2,6 +2,7 @@
 title: Tervezzünk rádióadót
 layout: post
 tag: amado
+category: elektro
 ---
 
 Avagy hogy a jófenébe működik az a tranzisztor vagy micsoda?

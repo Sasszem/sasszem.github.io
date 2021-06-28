@@ -1,5 +1,7 @@
 ---
 title: EMG szkópom (1569) javítása
+layout: post
+category: elektro
 ---
 
 {% include imgpath.md %}
