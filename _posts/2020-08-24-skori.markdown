@@ -24,8 +24,6 @@ A szekundert sikerült sajnos párszor majdnem tönkretennem, de sikerült mindi
 
 Videók a tekercsről:
 
-<iframe width="1519" height="554" src="https://www.youtube.com/embed/oZT6QXziXcY?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<iframe width="1519" height="554" src="https://www.youtube.com/embed/gpOH-WP2XgM?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<iframe width="1519" height="554" src="https://www.youtube.com/embed/T2JvNp0kqoA?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% include youtube.html url="https://youtu.be/oZT6QXziXcY?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" %}
+{% include youtube.html url="https://youtu.be/gpOH-WP2XgM?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" %}
+{% include youtube.html url="https://youtu.be/T2JvNp0kqoA?list=PL3dDFVdDb7vh95_omY0aDy_FbhAy9EHl2" %}

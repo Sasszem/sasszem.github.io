@@ -26,4 +26,4 @@ Egy kis netes keresgélés után viszont arra jutottam hogy érdemes megpróbál
 
 [Kicsit később építettem egy valamivel nagyobb (és sokkal látványosabb) tekercset.]({% link _posts/2020-08-24-skori.markdown %})
 
-<iframe width="1519" height="505" src="https://www.youtube.com/embed/02XNL2TRQUY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% include youtube.html url="https://youtu.be/02XNL2TRQUY" %}
