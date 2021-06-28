@@ -1,0 +1,33 @@
+---
+title: s502 - assembler a 6502-es processzorcsaládra (egyetemi projekt)
+layout: post
+---
+
+## Motiváció
+
+Már régóta érdekelnek a régebbi technológiák, és a 6502-es processzorcsalád elég népszerű volt a 80-as években, és ennél fogva ma is igen ismert. Sok korabeli gép használta őket, például a Commodore gépek, az Apple ][, a BBC micro, és több Atari konzol, köztük a 2600-as, de az eredeti NES is hasonló processzorral rendelkezett, így már egy ideje gondolkoztam valamilyen projektben amivel elmerülhetnék a témában.
+
+Az egyetemen első félévben a "Programozás alapjai 1" tárgy keretein belül feladat volt egy nagyobb projekt elkészítése, amelynek témáját akár magunknak is válaszhattuk. Az én ötletem megfelelt a felsorolt feltételeknek, sőt, kicsit túl is teljesítettem őket pár helyen, például hibakezelést nem is vártak el.
+
+## Működés
+
+A program maga sima "kétkörös" assembler előrehivatkozással, ahol az első körben lefordítja az utasításokat, a második körben pedig simán összefűzi őket, behelyettesítve a memóriacímeket. Az utasítások és típusok felismerésére nem túl pontos módszereket használ, viszont cserébe a kód egyszerű, átlátható, semmilyen külső könyvtárra nem épül és platformfüggetlen. Utólag visszagondolva nyilván máshogy írnám, de nem vagyok túl elégedetlen ezzel a verzióval sem.
+
+Implementáltam pár hasznos lehetőséget, mint a fordítási konstansokat, konstans adatok elhelyezését, feltételes fordítást vagy éppen többfájlos programok lehetőségét is.
+
+## Példa
+
+Írtam egy kisebb példaprogramot is, amely a C=64 számítógépre készült, egyszerű demó, viszont majdnem minden képességét bemutatja a fordítóprogramnak, és a demó része volt hogy ezt emulátorban be is mutattam.
+
+## Hibakezelés
+
+Elég részletes hibakezelést valósítottam meg, ez tette ki a kód nagy részét végül, és állítom hogy ez a fordító generálja a legszínesebb hibaüzeneteket amit valaha láttam.
+
+## Konklúzió
+
+Elég kellemes projekt lett volna ha nem hagyom a "második 90%"-ot a végére, mert így egy hétvége alatt kellett befejeznem és eltüntetnem a hibákat, ami kicsit húzós élmény volt. Nyilvánvalóan elég sokat tanultam közben a C nyelvről is, ami végül is az egész célja volt.
+
+## Linkek
+
+- [github repó](https://github.com/sasszem/s502)
+- [doxygen dokumentáció](https://sasszem.github.io/s502/)
