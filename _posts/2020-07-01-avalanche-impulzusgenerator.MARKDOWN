@@ -9,7 +9,7 @@ layout: post
 
 Eredetileg koaxkábelek teszteléséhez (eldönteni hogy `75` vagy `50` ohmosak) akartam építeni egy `TDR`-t, de végül a kihívás hajtott hogy elő tudok-e állítani nagyon gyors impulzusokat.
 
-## Mi az a TDR
+# Mi az a TDR
 
 A TDR (*time domain reflectometer*) egy olyan készülék, ami nagyon-**NAGYON** gyors felfutási idejű (pár `ns`!) jeleket generál. Olyan gyorsakat, hogy a jel felfutása gyorsabb mint ahogy a jel végighalad a kábelen - így hullámjelenségek (legfőképpen **visszaverődés**) lépnek fel, amelyek segítségével vizsgálhatjuk a kábel tulajdonságait.
 
@@ -22,7 +22,7 @@ A visszavert impulzus vizsgálatával megállapíthatjuk hogy megfelelően van-e
 
 Egyszóval egy `TDR` nagyon hasznos ha valaki koaxkábeleket akar vizsgálni - persze én inkább a kihívás miatt építettem...
 
-### Impulzusgenerátor
+## Impulzusgenerátor
 
 A neten többféle TDR-áramkör terjed, de két fő típus van: a 74AC-s logikai áramkörre épülő és az avalanche-effektusra épülő. Az előbbihez "speciális" IC-re van szükség, ami nem igazán volt nekem kéznél (a karantén miatt meg még nehezebb bármit beszerezni, de elvileg már úton van ez is), a második áramkör viszont rém egyszerű, csak a tápelleása bonyolult...
 
@@ -40,7 +40,7 @@ Az áramkör egyszerűsége lenyűgöző, gyakorlatilag változtatás nélkül m
 
 Az egyetlen nehézség a ~200V előállítása elegáns módon. Amíg a generátorrész mindenhol megegyezett, itt nem volt két egyforma megoldás - és az enyém is csak egy újabb lett...
 
-### A tápegység
+## A tápegység
 
 A neten két megoldás volt gyakori: önrezgő boost-konverter feszültség-többszörözővel, illetve 
 kapcsolóüzemű IC-s transzformátoros. Én az utóbbival kezdtem el kísérletezni...
@@ -59,22 +59,22 @@ Az új tápegységgel már elsőre működött a generátor, és onnan már csak
 
 ![PSU közeli kép]({{imgpath}}/psu_kozel.jpg)
 
-### Impulzusok
+## Impulzusok
 
 Sajnos a szkópom nem tudja  a teljes impulzust felvenni, mivel az nagyon gyors és elég nagy amplitúdójú, így a tetejét sajnos levágja...
 
-#### Illesztett impulzus - minimális visszaverődés
+### Illesztett impulzus - minimális visszaverődés
 
 ![illesztett impulzus]({{imgpath}}/illesztett.jpg)
 
-#### Rövidre zárt kábelvég - teljes negatív visszaverődés
+### Rövidre zárt kábelvég - teljes negatív visszaverődés
 
 ![rövidre zárt]({{imgpath}}/rovidre.jpg)
 
-#### Szabadon hagyott kábelvég - teljes pozitív visszaverődés
+### Szabadon hagyott kábelvég - teljes pozitív visszaverődés
 
 ![szabad vég]({{imgpath}}/szabad.jpg)
 
-#### Impulzusszélesség - kb. 10ns
+### Impulzusszélesség - kb. 10ns
 
 ![impulzus szélesség]({{imgpath}}/szelesseg.jpg)

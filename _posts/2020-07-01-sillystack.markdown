@@ -7,7 +7,7 @@ Avagy a *legegyszerűbb* módszer az első száz fibonacci-szám kiírására py
 
 [Github gist](https://gist.github.com/Sasszem/1f7b1b1fc342d0deffd7d151c21fd1c5)
 
-## Miért
+# Miért
 
 Mind hozzászoktunk már ahhoz hogy kezdő programozók a házijukat kirakják fórumokra vagy kérdés válasz-oldalakra hogy csináljuk meg helyettük. A legtöbben nem reagálnak ilyenkor semmit, mások leszúrják őket amiért nem próbálkoztak megoldani maguk, megint mások elkezdik irányított kérdésekkel terelni őket a helyes megoldás felé, de úgy hogy meg is kelljen dolgozni érte...
 
@@ -19,7 +19,7 @@ min(random.randrange(1, 100) for _ in range(10000))
 
 kifejezést használta, mindemellett naiv rekurzióval dolgozott, tehát exponenciális aszimptotikus futásidővel rendelkezett...
 
-## Az én megoldásom
+# Az én megoldásom
 
 Engem hirtelen elkapott a "de terveznék egy virtuális gépet"-hangulat. Persze egy ilyen extrémmód bonyolult feladathoz megfelelő virtuális gép is kellett, szóval pár tervezési sajátosság:
 
@@ -34,7 +34,7 @@ Engem hirtelen elkapott a "de terveznék egy virtuális gépet"-hangulat. Persze
 
 Egyszóval igyekeztem elég hülyére tervezni, ami valamennyire sikerült is. Nem olyan elvetemült mint pl. a `malbolge` amit konkrétan a lehetetlennel határos programozni, inkább ránézésre ártatlan de belül hülye.
 
-## Fibo
+# Fibo
 
 A végső fibonacci-programkód:
 

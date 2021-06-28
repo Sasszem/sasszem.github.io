@@ -15,11 +15,11 @@ Készítés ideje: 2020.06.23 22:45
 
 [Online kipróbálás](https://sasszem.github.io/tic-tac-toe/)
 
-## Történet
+# Történet
 
-### Én és a web
+## Én és a web
 
-#### HTML
+### HTML
 
 Már fogalmam sincs hogy honnan tanultam meg a HTML alapjait. Talán a [Farkas Csaba](https://www.libri.hu/konyv/farkas_csaba.programozasi-ismeretek-halado-felhaszna) könyv volt az? Időben nagyjából akkor volt, még általános alsós koromban....
 
@@ -27,7 +27,7 @@ Ez a könyv elég elavult volt már akkor is, pedig még annyira nem is volt ré
 
 Mindenesetre megtanultam a nagyon alapokat, úgymint `<html></html>`, `<p>` és egyebek. A JS-ről még szó sem volt akkor, de a CSS-ről sem. Az abszolút maximum a `Kompozer` használata volt...
 
-#### JS
+### JS
 
 A legelső programozási nyelvem a JS volt. Még a közelítő dátumra sem emlékszem amikor először kértem bátyámat hogy tanítson meg "programozni", de úgy rémlik hogy még a HTML ELŐTT volt, tehát még bőven alsós koromban...
 
@@ -49,7 +49,7 @@ A JS-el sokkal többet akkor nem foglalkoztam, elkezdtem egy (ha lehet még elav
 
 A webbel azóta nem sokat foglalkoztam, főként hogy akárhányszor megpróbáltam, mindig rövid úton agygörcsöt kaptam a CSS-től, de láttam hogy igen gyorsan fejlődik és valószínűleg érdemes foglalkoznom vele.
 
-### Én és az Angular
+## Én és az Angular
 
 A sulink honlapjának újratervezésébe fogtunk bele páran 10. osztály környékén. Kicsit kevesebben lettünk mint eredetileg terveztük, és ennek megfelelően nem is annyira haladt a dolog.
 
@@ -61,13 +61,13 @@ Nem tudom hogy magában az Angular-tól vagy az általunk használt többi dolog
 
 Az angular ahogy látom ténylegesen "enterprise ready", azaz bonyolultságban vetekszik az NCC-1701-el. Ha enterprise FizzBuzz-t akarnék írni akkor biztosan #1 lenne az Angular, de a saját hobbiprojektjeimhez biztosan nem használnám.
 
-### Én és a Svelte
+## Én és a Svelte
 
 A Svelte-ről először egy YouTube-os videóból hallottam: [Rethinking Reactivity](https://www.youtube.com/watch?v=AdNJ3fydeao). Alapvetően Rich Harris egy fél órán át promózza a saját framework-jét, és azt állítja hogy mindenki más rosszul csinálja a sajátját. Baromi meggyőző, annyit tudok csak mondani.
 
 A prezentáció baromi jó reklám lett, amióta csak láttam megint le akartam ülni "webezni" - de még mindig egy kicsit visszatartott a CSS, illetve nem akartam újabb projektbe kezdeni, hanem a változatosság kedvéért be is akartam fejezni valamit...
 
-## Alapötlet
+# Alapötlet
 
 Az alapötletet az adta, hogy valahol olvastam egy másik szintén csodálatos (bár nem ennyire új) webes technológiáról - a websocketekről. Gondoltam csinálhatnék vele valamilyen játékot - de valami egyszerűvel kéne kezdeni. A legegyszerűbb multiplayer játék (a kő-papír-olló után) pedig a tic-tac-toe...
 
@@ -75,9 +75,9 @@ Ha már játék, akkor csináljuk rendesen - legyen lobby, győzelem / vereség 
 
 A websocket-nek egy hátránya van: amíg a svelte-s oldalt bármilyen statikus hostingon el lehet helyezni (pl. github.io), addig a websocketeknek kell egy szerver és egy szerverprogram. Úgy döntöttem viszont hogy kipróbálom a Banana Pi-met mint szervert. 
 
-## Működés
+# Működés
 
-### Frontend
+## Frontend
 
 Baromi egyszerű.
 
@@ -87,7 +87,7 @@ A gombokra való kattintás a store-on keresztül üzenetet küld a websocketen,
 
 A legtöbb időm a CSS-el ment el, főleg a lobby-nál a vízszintesen oldalra és függőlegesen középre igazított elemekkel. Ezúton is köszönöm a tippet a W3Schools-nak hogy használjak `float`-ot, de még inkább haveromnak hogy használjak `flexbox`-ot és hagyjam a W3S-t a fenébe.
 
-### Backend
+## Backend
 
 Python alapon kezdtem neki a szervernek, a [websockets könyvtárral](https://websockets.readthedocs.io/en/stable/intro.html).
 
@@ -95,7 +95,7 @@ A könyvtár `asyncio`-s (`async`/`await`-os) async módon működik, amely gyak
 
 A szerver üzeneteket vár a klienstől, állapottól függően reagál a különböző típusúakra, módosítja a helyi állapotot majd elküldi a kliensnek, adott esetben akár minden kliensnek. Nem egy nagyon összetett program, bár az első működő verzió elég csúnyán nézett ki, így az egyik első dolgom volt refaktorálni.
 
-#### Banana Pi
+### Banana Pi
 
 A szerver gyönyörűen futott a saját gépemen, de sajnos a Banana Pi-men el sem indult, mivel azon még csak Python 3.4 volt. 
 
@@ -105,12 +105,12 @@ Raspbian-ra nem elérhető újabb verzió, de a banana pi-ra még a legújabb `r
 
 Amint a szerver működött, a routeremen beállítottam egy port-továbbítást rá, és frissítettem a DDNS-em is. Feldobtam egy `nginx`-et a frontend hostolására is.
 
-##### Frissítés - 2021.01.19.
+#### Frissítés - 2021.01.19.
 
 A szervert áthelyeztem Heroku-ra, leginkább azért hogy kipróbáljam hogy azt hogyan kell.
 [Új repó a szerverprogramnak](https://github.com/Sasszem/heroku-ttt-server)
 
-## Konklúzió
+# Konklúzió
 
 A mikroprojekt során megtanultam a Svelte és a WebSocket-ek alapjait, de persze még sokkal jobban el lehet mélyedni mindkettőben.
 

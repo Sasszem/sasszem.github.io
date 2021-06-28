@@ -7,21 +7,21 @@ Készítés ideje: 2020-07-11 - 2020-07-16
 
 [github repó](https://github.com/sasszem/rttt)
 
-## Rust
+# Rust
 
 A Rust manapság elég népszerű programozási nyelv. Fő erőssége hogy memóriabiztos - megakadályozza a memóriaszivárgásokat és a gyakoribb többszálúsági hibákat. Elég új nyelv, erős fejlődésben van, és sokban eltér a megszokottabb nyelvektől. Nagyon ígéretes nyelv.
 
 A Rust [dokumentációja](https://doc.rust-lang.org/book/title-page.html) igen jó. Egy nyaralás során olvastam végig, és kezdtem el írni ezt a projektet.
 
-## RTTT
+# RTTT
 
 Az egyik legegyszerűbb interaktív projekt ami az eszembe jutott egy tic-tac-toe játék volt. Nem túl összetett, de ahhoz pont eléggé hogy kipróbálhassam vele a fontosabb feature-öket.
 
-### Kód
+## Kód
 
 A programkódot pár nap alatt írtam esténként, fokozatosan fejlesztgetve. Az első működő verzió után elkezdtem refaktorálni, a projektet modulokra bontva. A végén írtam egy kis dokumentációt is, bár ebben az esetben ennek annyira sok értelme nincs...
 
-### Konklúzió
+## Konklúzió
 
 A Rust egy jól használható nyelv, amely nagyon ígéretes. A memory safety-t nem használtam ki túlzottan, de ezek nem is álltak az utamba a fejlesztés során, ami egy kicsit meglepő volt.
 

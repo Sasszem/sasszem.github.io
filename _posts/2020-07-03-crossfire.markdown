@@ -4,11 +4,11 @@ layout: post
 ---
 (eredetileg 2019-2020-ban készült)
 
-## Linkek
+# Linkek
 
 - [Github repó](https://github.com/sasszem/crossfire)
 
-## A sztori
+# A sztori
 
 Régóta nézője vagyok a [Game Maker's toolkit](https://www.youtube.com/channel/UCqJ-Xo29CKyLTjn6z2XwYAw) csatornának, amely különböző játékok elemzésével mutat be játéktervezési problémákat, trükköket és megoldásokat. Nagyon hasznos tippeket ismertem meg, amiket *nyilvánvalóan* használni is fogok amint saját játékot tervezek, de addig is érdekes hallani ahogy a kedvenc játékaimat dicséri, illetve egyben tippet is ad hogy mivel játsszak legközelebb.
 
@@ -18,7 +18,7 @@ A játék különlegessége hogy bár egy lövöldözős jellegű játék, de a 
 
 Míg az eredeti játék 48 óra alatt készült el (azt hiszem valami GameMaker-ben), addig az enyém kb. egy év alatt. Ennek számos oka van amit még részletesebben kifejtek...
 
-## Tervezés
+# Tervezés
 
 A projekt átment pár újratervezési fázison. Ami végig megmaradt:
 
@@ -27,13 +27,13 @@ A projekt átment pár újratervezési fázison. Ami végig megmaradt:
 
 Volt még a rendszerben `Moonscript` is, a végén pedig bekerült a `flux` és a `yalg` is.
 
-### Moonscript
+## Moonscript
 
 Az elején [Moonscript](https://moonscript.org)-ben kezdtem dolgozni (egy olyan nyelv ami Lua-ra fordul), amit a segédeszközök majdnem teljes hiánya miatt végül feladtam, főleg hogy átírni mindent Lua-ra nem is volt olyan nagy munka, tehát sokat nem is spórolt nekem.
 
 A Moonscript tud segíteni ha Lua-ban OOP kódot akarunk írni (a Lua-ban ez nem is olyan könnyű!), meg segít javítani pár furcsaságot - mint például a ternary operátor hiánya, a `~=` az `==` helyett, vagy az in-place `+` vagy `-` hiánya.
 
-### ECS-lib
+## ECS-lib
 
 Az `ECS` az `Entity-Component-System` rövidítése. A lényege, hogy a játékot 3 dologból építjük fel: `szereplők`ből (entity), `komponensekből` és `rendszerek`ből (system)
 
@@ -45,7 +45,7 @@ A `rendszer`ek `esemény`ek-re reagálnak, néha új `esemény`ek küldésével.
 
 A `nata` az ilyen `rendszer`ek és `szereplő`k összerendezésében segít, és az egész projekt gerincét adja így.
 
-### Paradigma
+## Paradigma
 
 Manapság úgy tűnik dúl az `OOP` vs `functional` háború - meg úgy általában az arról való vita hogy mi a legjobb programtervezési módszertan. A mostani divat az `agilis` fejlesztés, de a cél a `TDD` és persze a `DOD (Data Oriented Design)` (amihez amúgy közelít az `ECS`).
 
@@ -55,7 +55,7 @@ Megjegyzem hogy a `nata` a rendszereket teljesen OOP módon kezeli, akárcsak a 
 
 Mindazonáltal jóval több időm ment el oda-vissza refaktorálásra mint kellett volna...
 
-### Feladatkezelés
+## Feladatkezelés
 
 Nagyobb programokat általában kisebb feladatok(`issue`, `task`, stb. ) formájában valósítják meg. Ezek típus szerint általában lehetnek `feature`-ök vagy `bug`-ok.
 
@@ -74,7 +74,7 @@ A `CI`-be próbáltam még beilleszteni egy `code coverage` tesztet is, ami a te
 Összefoglalva: jó volt játszani a hű-de-professzionális fejlesztőt, de többször állt az utamba mint segített, illetve megfelelő eszközök nélkül van amit konkrétan nem lehet megoldani...
 Más projektnél még valószínűleg fogok ilyet csinálni, de itt nem sok értelme volt - az egész nagyon erősen összetett interakciókra épül, és nem olyan sok minden tesztelhető automatikusan.
 
-### Projekt felbontás
+## Projekt felbontás
 
 Az egész projektet a leginkább az lassította le hogy próbáltam mindent a lehető legszebben és legelegánsabban megoldani.
 
@@ -86,19 +86,19 @@ Ráadásképpen hozzátenném hogy ha 8 órát gondolkodunk azon hogy hogy lehet
 
 Mindemellett megállapítottam hogy a framework-ök és az engine-k egyik legfontosabb, de kevésbé hangoztatott előnye az, hogy a projekt struktúrájával és paradigmájával kapcsolatos döntések egy részét már meghozták helyettünk, így egyáltalán nem szükséges ezeken gondolkodnunk.
 
-## Egyebek
+# Egyebek
 
-### flux
+## flux
 
 Felhasználtam a nagyszerű [flux](https://github.com/rxi/flux) könyvtárat, amely sokat segít a változó állapotok közötti interpolációban (tweening).
 
-### YALG
+## YALG
 
 Amikor egy GUI-libet kerestem a projekthez, de nem találtam nekem tetszőt, úgy döntöttem írok egy sajátot - ez lett a [YALG]({% link _posts/2020-07-03-yalg.markdown %})
 
 A YALG-ot használtam a [13]({% link _posts/2020-07-03-13.markdown %})-ban is.
 
-## Konklúzió
+# Konklúzió
 
 Sikerült befejeznem egy projektet, a termék játszható, és valamennyire élvezetes is. Az elsőre vagyok a legbüszkébb, ahogy ez az egész haladt.
 
