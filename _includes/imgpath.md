@@ -1,0 +1,1 @@
+{% capture imgpath %}/assets/images/{{ page.path | split: "/" | last | split: "." | first }}{% endcapture %}
