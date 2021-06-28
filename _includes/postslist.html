@@ -1,12 +1,16 @@
 {%- if include.posts.size > 0 -%}
+    {% unless include.compact %}
     <h2 class="post-list-heading">{{ include.list_title | default: "Posts" }}</h2>
+    {% endunless %}
 
-    <ul class="post-list">
+    <ul class="post-list{% if include.compact %}-compact{% endif %}">
     {%- for post in include.posts -%}
         {%- unless post.hidden -%}
             <li>
+                {%- unless include.compact -%}
                 {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
                 <span class="post-meta">{{ post.date | date: date_format }}</span>
+                {%- endunless -%}
                 <h3>
                     <a class="post-link" href="{{ post.url | relative_url }}">
                         {{ post.title | escape }}

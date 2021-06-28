@@ -1,6 +1,7 @@
 ---
 title: s502 - assembler a 6502-es processzorcsaládra (egyetemi projekt)
 layout: post
+category: prog
 ---
 
 ## Motiváció

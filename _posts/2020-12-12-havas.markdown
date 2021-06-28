@@ -1,5 +1,6 @@
 ---
 title: Havas tájkép - keresd a rejtett üzenetet!
+category: prog
 ---
 {% include imgpath.md %}
 

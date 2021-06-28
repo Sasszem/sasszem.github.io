@@ -1,6 +1,7 @@
 ---
 title: babypk - egy izgalmas CTF challenge megoldása
 layout: post
+category: prog
 ---
 
 {% include imgpath.md %}

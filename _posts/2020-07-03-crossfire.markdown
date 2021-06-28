@@ -1,6 +1,7 @@
 ---
 title: Crossfire - Lövésgomb-nélküli lövöldözős játék
 layout: post
+category: prog
 ---
 (eredetileg 2019-2020-ban készült)
 

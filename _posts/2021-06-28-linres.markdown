@@ -1,6 +1,7 @@
 ---
 title: Lineáris rezisztív hálózatszámító program - (egyetemi projekt)²
 layout: post
+category: prog
 ---
 
 {% include imgpath.md %}

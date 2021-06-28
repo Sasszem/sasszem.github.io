@@ -1,6 +1,7 @@
 ---
 title: RTTT - Egyszerű egyjátékos tic-tac-toe Rust-ban
 layout: post
+category: prog
 ---
 
 Készítés ideje: 2020-07-11 - 2020-07-16

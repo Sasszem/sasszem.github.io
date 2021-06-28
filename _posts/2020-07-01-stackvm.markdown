@@ -1,6 +1,7 @@
 ---
 title: StackVM - veremalapú virtuális gép
 layout: post
+category: prog
 ---
 
 (eredetileg 2018 november-decembere környékén készült)

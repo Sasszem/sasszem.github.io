@@ -1,6 +1,7 @@
 ---
 title: Silly stack VM
 layout: post
+category: prog
 ---
 
 Avagy a *legegyszerűbb* módszer az első száz fibonacci-szám kiírására pythonban

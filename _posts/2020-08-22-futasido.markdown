@@ -1,6 +1,7 @@
 ---
 title: Programok futásidejének elemzése, és egy anomália
 layout: post
+category: prog
 ---
 
 {% include imgpath.md %}

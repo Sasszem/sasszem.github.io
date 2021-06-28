@@ -1,6 +1,7 @@
 ---
 title: C feladványok és megoldások
 layout: post
+category: prog
 ---
 
 # Linkek a feladványokhoz

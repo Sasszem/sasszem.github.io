@@ -1,6 +1,7 @@
 ---
 title: Yet another Löve2D GUI libary - na még egy Löve2D GUI könyvtár
 layout: post
+category: prog
 ---
 
 Készítés ideje: 2020 május 1-10

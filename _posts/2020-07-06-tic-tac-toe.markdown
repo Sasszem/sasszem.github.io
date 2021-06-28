@@ -1,6 +1,7 @@
 ---
 title: Online tic-tac-toe
 layout: page
+category: prog
 ---
 
 Online multiplayer tic-tac-toe Svelte-ben, websocket kommunikációval és Python backenddel    

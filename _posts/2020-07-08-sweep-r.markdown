@@ -1,6 +1,7 @@
 ---
 title: Sweep-R - Egyszerű svelte-s aknakereső
 layout: post
+category: prog
 ---
 
 Linkek:
