@@ -1,18 +1,9 @@
 ---
 layout: page
-title: About
+title: Rólam
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+A nevem Baráth László, 20 éves vagyok ezen sorok írásakor. Régóta érdekel a programozás és az elektronika, és a BME-VIK-en tanulok villamosmérnöknek 2020 ősze óta.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+A szabadidőmben a sorozatnézés és számítógépes játékok mellett igyekszem mindenféle programozós vagy elektronikai projekteken dolgozni, mert ezek érdekesek és rengeteget tanulok közben. Kifejezetten szeretem a retro témájú projekteket, de minden érdekel ami nem szokványos vagy túlzottan elterjedt.
