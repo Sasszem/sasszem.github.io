@@ -1,0 +1,54 @@
+---
+title: 13 - Egy addiktív játék rekreációja
+layout: post
+---
+
+Készítés ideje: 2020.06.01-2020.06.14, illetve azóta
+
+## Linkek
+
+- [Github repó](https://github.com/sasszem/13)
+
+## Történet
+
+Versenyzőként vettem részt a 2018-as Neumann-versenyen, ahol az egyik dobogós a játék kategóriában egy addiktív mobilos játék volt.
+
+A játékot talán a 2048-hoz tudnám hasonlítani, lényege, hogy kisebb számok összerakásával nagyobb számokat kapunk, amikből még nagyobb számokat csinálhatunk. Persze mindenért kapunk pontokat, közben kellemes háttérzene szól, és mivel minden lépéshez kell egyes szám, de ahogy egyre több pontunk lesz, egyre kevesebbet kapunk belőle, előbb-utóbb véget is ér.
+
+A játék baromi addiktív, nehéz letenni. Anyukám is kipróbálta, és a mai napig előveszi. Nagyon jól kitalálták az egészet.
+
+Ami nekem viszont az első perctől feltűnt, az az, hogy a technikai megvalósítása már nem olyan jó. Unity-s, és valószínűleg az ingyenes verzióval készült - erre a betöltés előtti Unity logóból lehet következtetni. Kicsit gyengébb mobilokon "baromi" hosszú ideig tölt (10 másodperctől akár fél percig is), néha be is fagy, illetve tartalmaz idegesítő hirdetéseket is.
+
+Éppen ezek miatt döntöttem el hogy csinálok egy saját verziót, amely lehetőleg gyorsabb lesz, és biztosan nem lesz benne egy fél hirdetés sem.
+
+A saját verzióm egy kissé különbözik az eredetitől - nincs pontozás, a játék automatikusan véget ér amint elérjük a 13-at, a kinézetére pedig rá sem lehet ismerni...
+
+## Technika
+
+Mivel körülbelül semmilyen androidos keretrendszert nem ismerek, viszont a játék nem túl bonyolult, úgy döntöttem hogy Löve2D-vel kezdek neki, amit valamennyire ismerek. A Löve2D-t lehet androidon futtatni, és akár saját APK is készíthető, így használható választás volt.
+
+Felhasználatam a [saját GUI libemet]({% link _posts/2020-07-03-yalg.markdown %}) is.
+
+## Határidő
+
+Tanulva az [előző projektemből]({% link _posts/2020-07-03-crossfire.markdown %}) úgy döntöttem hogy szoros határidőt szabok magamnak - pontosan két hetet. Ezt sikerült is elég jól betartanom, két hét után használható 1.0-s verzióm volt. Kisebb-nagyobb hibák azért maradtak, és persze apró módosításokat vagy új feature-öket is tehetek még hozzá.
+
+### Technika - coroutine-ok
+
+Ebben a projektben először használtam `coroutine`-okat, és meg kell állapítsam hogy baromi jók. Főképpen az animációknál használtam őket, de a periodikus és késleltetett függvényhívást is velük oldottam meg.
+
+A `coroutine` egy olyan függvény amely adott ponton fel tudja függeszteni a futását, majd később folytatni ugyanott. Ezzel kooperatív multitasking kivitelezhető, amely pár szempontból jobb mint az általában használt `preemtive` modell. Minden "folyamat" önként adja át a vezérlést, akkor amikor neki megfelelő, így jó pár gyakori probléma megelőzhető - legalábbis az egyszerűbb esetekben.
+
+A `coroutine`-ok a felfüggesztéskor értékeket küldhetnek és fogadhatnak. Az én "folyamataim" megkapják az eltelt időt, és ez alapján végzik az animációt. Akárhányszor `coroutine`-t használunk, kell írnunk egy `scheduler`-t, azaz egy függvényt / modult amely a felfüggesztett folyamatokat periodikusan folytatja - és itt szabhatjuk személyre az átadott adatokat, illetve kezelhetjük le az esetleges hibákat.
+
+## Jövő
+
+A bátyám az 1.0.0 után alaposan megnézte a kódot, és volt egy tucat ötlete és észrevétele is. Szinek cseréje, lokalizáció, új font, de még egy szép logót is készített...
+
+A legtöbb ötlete igen egyszerű volt, úgyhogy kiosztottam neki - leírtam hogy nagyjából hol van az idevágó kód, és nagyjából mit kell csinálni. A bonyolultabbakat egyelőre félreraktuk, valószínűleg én fogom megcsinálni őket ha ő végzett a sajátjával.
+
+Párat már meg is csinált, de mivel kevesebb szabadideje van mint nekem, és nem is lát még át mindent, így lassan halad.
+
+Amint minden eddig felírt dolog megvan, készíteni fogunk egy új kiadást is, de addig még marad a mostani.
+
+(2020.07.03)

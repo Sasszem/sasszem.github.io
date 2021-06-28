@@ -1,0 +1,90 @@
+---
+title: Yet another Löve2D GUI libary - na még egy Löve2D GUI könyvtár
+layout: post
+---
+
+Készítés ideje: 2020 május 1-10
+
+## Linkek
+
+- [Github repó](https://github.com/Sasszem/yalg)
+- [leírás](https://github.com/Sasszem/yalg/blob/master/TUTORIAL.MD)
+
+## Minek még egy Löve2D GUI lib?
+
+Ha ránézünk egy [Löve2D modulgyűjteményre](https://github.com/love2d-community/awesome-love2d#ui), azt látjuk hogy már létezik egy tucat különböző könyvtár GUI-k tervezésére. Amikor a [Crossfire]({% link _posts/2020-07-03-crossfire.markdown %})-höz kerestem egy használhatót, mégsem találtam olyat ami tetszett volna.
+
+Az én követelményeim ezek voltak:
+
+- egyszerű - nem kell 50 sor kód két gomb hozzáadásához
+- reaktív, ön-elrendező - nem nekem kell minden gombot elhelyeznem kézzel
+- platformfüggetlen - működik windowson, linuxon és androidon is
+
+Nekem elég lett volna pár alap gomb és címke, de ilyen libet, ami megfelelt volna mindennek, nem találtam...
+
+Úgy döntöttem összedobok gyorsan valamit, ami használható lesz. GUI libet úgy sem írtam még - ha nem számítjuk amit egyszer minecraftban, a computercraft-os érintőképernyős monitorokra írtam és szöveges karakterekkel rajzolt...
+
+Felhasználtam a [classic](https://github.com/rxi/classic) Lua-s OOP könyvtárat, mivel segített az öröklődés implementálásában.
+
+## Tervezés
+
+Ami nagyon egyedivé teszi a YALG-ot a többi könyvtárral szemben, az hogy az YALG magától elrendezi az egyes elemeket. A tárolók automatikusan felosztják a teret az elemek között, az elemek beállítástól függően igazítják középre magukat vagy töltik ki a rendelkezésre álló teret. Nem mondom meg semminek hogy hova kerüljön, az elrendezés alapján magukat rendezik el.
+
+### Elemek
+
+A YALG nagyon egyszerű, összesen 6 fajta elemet tartalmaz:
+
+- `GUI` - a legmagasabb szintű tároló, mindent más elem ebbe kerül
+- `VDiv` - függőlegesen osztott tároló
+- `HDiv` - vízszintesen osztott tároló
+- `Switcher` - választóelem, amely több al-elem között képes váltani
+- `Label` - címke
+- `Button` - gomb
+
+
+### Felépítés
+
+Az elemekből összetett felületek deklaratív módon építhetőek fel:
+
+```lua
+local g = GUI(
+    HDiv(
+        Button("Gomb 1"),
+        Button("Gomb 2")
+    ),
+    Button("Gomb 3")
+)
+```
+
+### Stílusok
+
+Minden elem rendelkezik stílusbeállításokkal, amelyek egy részét a CSS-ből másoltam, például:
+
+- `margin` - margó
+- `font` - betűtípus
+- `backgroundColor` - háttérszín
+- `placement` - elhelyezés
+
+Minden elemtípusnak vannak alapértelmezettjei (a gomb és a címke csak ezekben különbözik!), de bármelyiket felülírhatjuk.
+
+### ID-k
+
+Minden elem kap egy szigorúan egyedi ID-t, de mi is beállíthatunk nekik sajátot. Ez jól jön ha később módosítani akarunk valamely tulajdonságot.
+
+### Események
+
+Összesen 3 fajta eseményt kezel a rendszer:
+
+- `mouseEnter` - az egér az elem fölé lett húzva
+- `mouseLeave` - az egér elment az elem fölül
+- `click` - az egérrel rákattintottunk az elemre
+
+### Hekkelhetőség
+
+A YALG baromi egyszerű, de mégis utólag alakítgatható, és elég sokat ki lehet belőle hozni. Erre szerintem jó példa a két játék amikben használtam, a [13]({% link _posts/2020-07-03-13.markdown %}) és a [crossfire]({% link _posts/2020-07-03-crossfire.markdown %})
+
+## Továbbiak
+
+Eddig mindössze egyszer változtattam rajta az 1.0 verzió után, minden másra képes volt amit akartam tőle. Simán működik androidon is (bár ott az egérhuzigálós események ugye kiesnek)
+
+Továbbfejleszteni nem nagyon akarom, de jó első próbálkozás volt. Ha még egyszer ilyet csinálok, tudom hogy mi fogok másként csinálni - és fel is írtam szóval nem felejtem el...
