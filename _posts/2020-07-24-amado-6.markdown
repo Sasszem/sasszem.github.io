@@ -1,0 +1,22 @@
+---
+title: AMadó - Oszcillátor teszt
+layout: post
+tag: amado
+---
+
+{% include amado.md %}
+
+Igazándiból nem sok érdekeset csináltam.
+
+Felépítettem az előző napon megtervezett oszcillátort. FET-nek egy `IRF7105`-öt használtam. Ez ránézésre egy SMD IC `SOIC8` tokban, de valójában két darab N csatorás MOSFET. Feltételezem ezek jól vannak illesztve.
+
+![SOIC8 tokozás]({{imgpath}}/soic8.jpg)
+
+Kisebb nehézséget jelentett az IC bekötése, de csipesszel és rövidre vágott drótdarabokkal egész szépen megoldható. A keresztbekötést tekercselőhuzallal végeztem.
+
+A tekercs `10uH`-s, a két szárnynak kinéző elem pedig két kb. `5nF`-os kondi sorbakötve ami így kb. `2,5nF`. 
+
+Egészen jól néz ki ahhoz képest hogy nem működik:
+
+![Nem működő áramkör panelja 1]({{imgpath}}/ccpair1.jpg)
+![Nem működő áramkör panelja 2]({{imgpath}}/ccpair2.jpg)

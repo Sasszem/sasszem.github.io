@@ -1,0 +1,45 @@
+---
+title: Tervezzünk rádióadót
+layout: post
+tag: amado
+---
+
+Avagy hogy a jófenébe működik az a tranzisztor vagy micsoda?
+
+Figyelem! Ez a projekt annyira folyamatban <del>van</del>volt hogy csak na! Próbálom megérteni az elméletét baromi sok dolognak, és ennek megfelelően itt leginkább bénázás várható!
+
+# Motiváció
+
+Amióta tudom hogy van olyan hogy tranzisztor (ovis korom?), érdekel hogy hogyan működik. Ennek egy részét végre értem (bár várni kellett rá pár évet), most már "csak" az érdekel hogy hogyan tudok saját áramkört építeni vele, hiszen mások által tervezett áramkört összeszerelni **unalmas**.
+
+Mindig is vonzottak a rádiók is. A legelső vevőmet kb. ovis koromban építettem, ami nehezen volt rádiónak nevezhető (félig szétszedett erősítő), de a helyi nemzetiségi adás bejött rajta szépen, tehát rádió volt...
+
+(azt az apróságot azért ne felejtsük el hogy az a helyi adó gyakran olyanon is bejön amin nem kéne...)
+
+Adót viszont még egyet sem építettem, szóval miért ne kombináljunk két dolgot amihez külön-külön sem értek, hátha a kettő együtt jobban megy? Ha másért nem, legalább látványosabb lesz a pofára esés (talán még nagyfeszültség kéne bele, hogy fájjon is)...
+
+## Célok
+
+- AM adás sugárzása a lakáson belül (lehetőleg a környéket nem zavarva)
+- saját tervezésű áramkör, kész elemeket NEM átvéve másoktól
+- lehetőleg jó hangminőség
+- diszkrét tranzisztoros adó, semmi csalás mindenféle IC-kel és egyebekkel
+
+# Progress
+
+(Ez a rész majd frissül ahogy több minden nem működik)
+
+## Előtanulmányok
+
+Elég sokat olvasgattam már tranzisztorokról, munkapont-beállításról, előfeszítő áramkörökről és azok béta-függetlenségéről, illetve harmonikus oszcillátorokról. Elvben ismerem az AM-moduláció működését is, na meg jól megy az alapvető elektronika, úgy mint Ohm törvénye, Kirchhoff törvényei, illetve a középiskolai matek-fizika.
+
+Hogy segítsem magam a hibakeresésben (és *egyáltalán* nem azért hogy dicsekedjek a tudásommal, mert az jelen pillanatban bőven kevés még ehhez az egyszerű projekthez is), igyekszem majd mindenféle magyarázó szövegeket és/vagy ha időm (és kedvem) van rá, ábrákat beszúrni ide.
+
+
+<ul>
+  {% for post in site.tags.amado reversed limit: 8 %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
