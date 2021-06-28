@@ -1,0 +1,25 @@
+# Lineáris rezisztív hálózatszámító program
+(egyetemi projekt)²
+
+## Háttérsztori
+
+Második egyetemi félévem során több tárgyból is szerették volna ha önállóan készítünk valamiféle projektet. Ezek közül egyik a "Programozás alapjai 2" volt, amiből egy nagyobb programot kellett írni `C++`-ban, egy másik pedig a "jelek és rendszerek 1" volt, ahol extra pontokért volt feladat elmerülni valamilyen a tárgyhoz kapcsolódó témában.
+
+Prog2-ből a téma a `C++` nyelv és az objektumorientált szoftverfejlesztés volt, és ennek mentén kellett valamilyen nagyobb programot írni, akár saját magunk által választott témában. Programozni nem most kezdtem el, és bár `C++`-al még különösebben nem sokat foglalkoztam, nem volt kezelhetetlen kihívás, így úgy éreztem szívesen csinálnék valami érdekeset házinak.
+(természetesen így is nagyon sokat tanultam itt, csak könnyebben vettem az akadályokat mint azok akik életükben először láttak ilyesmi - velük nem is cseréltem volna szívesen)
+
+A `Jelek és rendszerek` talán a félév legfontosabb tárgya volt, ahol mindenféle lineáris áramkörök elemzését tanultuk. Ez leginkább egyenletek felírásából, majd az egyenletrendszer rendezéséből áll, ezzel kiszámítva konkrét értékeket vagy éppen paraméteresen egy rendszer viselkedését, de oldottunk meg többismeretlenes differenciálegyenlet-rendszereket is. Az egyik korai előadás végén említettek pár szisztematikus módszert az egyenletek felírására, de különösebben nem foglalkoztunk ezzel a módszerrel. Amikor viszont megtudtam hogy itt is kéne valamilyen projektet csinálni, azonnal eszembe jutott hogy a két projekt helyett csak egyet csinálok.
+
+## A projekt
+
+A projekt végül egy olyan program lett, ami a tárgyban megismert lineáris rezisztív (~időfüggetlen) hálózatok elemzését végzi el automatikusan. Ha beírok egy konkrét feladatot (konkrét számokkal, paraméteresen nem tud számolni), a leggyakoribb típusokat képes megoldani, de mivel a generált egyenletrendszert képes Matlab-kódként exportálni, ezért más feladatok megoldásában is segít, felhasználtam például dinamikus hálózatok elemzésére is így.
+
+A bevitt feladat megoldásához először is felépíti a hálózat gráfját, majd abból pár egyszerű, az előző félévben a "számítástudomány alapjai" tárgyból tanult (illetve azokhoz hasonló) gráfelméleti algoritmus segítségével előállítja a hálózatai egyenletek teljes rendszerét (HTR), ami egy sokismeretlenes lineáris egyenletrendszer. Az ilyenekről ebben a félévben elég sok elméletet tanultunk (bár a gyakorlati alkalmazásokat inkább a `jelek1` tanította meg), így az egyenletek rendezését és megoldását sem volt túl nehéz automatizálnom.
+
+Az [előző ilyen projektből](s502.md) tanulva igyekeztem minél hamarabb befejezni, ami azt eredményezte hogy a tavaszi szünet után már inkább már csak a hibakeresés és kód tisztogatás maradt, illetve a dokumentáció elkészítése, amiből két külön verzió kellett a két tárgyhoz.
+
+## Linkek
+
+- [github repó](https://github.com/Sasszem/Jelek)
+- [doxygen dokumentáció (`prog2`)](https://sasszem.github.io/Jelek/index.html)
+- [prezentáció diasor (`jelek1`)](linresprezi.pptx)

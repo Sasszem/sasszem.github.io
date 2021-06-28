@@ -11,5 +11,7 @@
 - [futásidőelemzés a gyakorlatban, és egy érdekes anomália](futasido/futasido.md)
 - [babypk - writeup egy érdekes CTF feladványhoz](cdctf/cdctf.md)
 - [SecChallenge 2021 writeups](sc21/index.md) (english)
+- [s502 - retro assembler és egyetemi projekt](s502.md)
+- [lineáris rezisztív hálózatszámító program (egyetemi projekt)²](linres.md)
 
 [Főoldalra](../README.md)
