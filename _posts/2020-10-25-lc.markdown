@@ -1,0 +1,55 @@
+---
+title: Egy IC-s LC mérő oszcilloszkóphoz
+layout: post
+category: elektro
+---
+
+{% include imgpath.md %}
+
+{% include latex.html %}
+
+Egy egyszerű LC "mérő" utánépítése
+
+# LC mérés
+
+Alapvető elektronikai alkatrészek a kondenzátorok és a tekercsek, bár előbbit jóval gyakrabban használjuk. Kondenzátorból nagyon sokféle kapható a boltban, viszont tekercseket általában sajnos magunknak kell készítenünk. A kondenzátorok sajnos hajlamosak az öregedésre, így nem árt ellenőrizni hogy jók-e még, de a házilag készült tekercset sem árt megmérni. Bárhogyan is, de egy megfelelő műszer amivel mérni tudjuk a kapacitást és induktivitást, nagyon hasznos eszköz.
+
+A legtöbb olcsóbb multiméter sajnos a feszültség-áram mellett csak ellenállást tud mérni, esetleg néha fordul elő kapacitás is, így célszerű valami célszerszámot beszerezni. Erre egy jó példa lehet többféle "tranzisztormérő", amelyek szinte kivétel nélkül kínálnak ellenállás-kapacitás-induktivitásmérést is. Az áruk nem túl borsos, sok mindenre jók és a méréshatáraik is igen jók. Én a jelenlegi kedvencemet [Walter egyik videójában láttam](https://youtu.be/oYvxhW-9rXI), és azóta is boldogan használom (éppen csak az akkumulátorát kellett cserélnem).
+
+Bármilyen jó műszer legyen is, sajnos az alsó méréshatárával már meg tud gyűlni a bajom, már ami a kapacitást vagy induktivitást illeti. A túl kis értékeket egyszerűen nem érzékeli. Szerencsére azonban akad egy egyszerű áramkör ami segíthet, még ha nem is túl pontos az sem.
+
+# w2aew
+
+Az áramkört én w2aew egyik videójában láttam:
+
+{% include youtube.html url="https://youtu.be/74fz9iwZ_sM" %}
+
+Elég egyszerű áramkör
+
+## működés
+
+![]({{imgpath}}/schema.jpg)
+
+Meglehetősen egyszerű. Az áramkör lelke egy 74AC14-es hex Schmitt trigger inverter IC, gyakorlatilag hat darab NEM logikai kapu egy tokban. Fontos hogy a 74AC sorozatból legyen, mert ennek a típusnak jóval gyorsabb a kimenetén a le és felfutása mint például a 74HC-nek.
+
+Az egyik kapuból egy klasszikus schmitt-triggeres oszcillátor van felépítve, egy másik kapu pedig mint (invertáló) puffer működik. Utóbbi kimenetén pár kHz-es négyszögjel jelenik meg, nagyon gyors le és felfutó élekkel.
+
+Ez a négyszögjel kétféleképpen van felhasználva. Az egyik, hogy egy 1k-s ellenálláson keresztül egy vizsgálandó kondenzátorra kerül. A kondenzátor töltődése miatt így azon egy exponenciális jelalak jelenik meg minden fel vagy lefutó élnél, amelynek idejét oszcilloszkóppal megmérve két adott pont ($0\%$-os és $(1-e^{-1})\approx63\%$-os amplitúdó) között, ez az idő egyenlő $C\bullet R$-el. Mivel $R=1000k\Omega$, így könnyen kiszámolható az ismeretlen kapacitás.
+
+(azóta tanultunk az ilyesmiről ezt-azt, szóval sajnos már itt is ugrásválaszt és Heaviside-függvény látok...)
+
+![]({{imgpath}}/kondimeres.jpg)
+
+A másik felhasználás a tekercs mérése. Az ellenállás után egy kondenzátoron keresztül jut egy ismeretlen tekercs és (cserélhető) ismert kondenzátor párhuzamos kapcsolására. A felfutó élekre ez a rendszer csillapított szinuszos rezgéssel reagál, amelynek frekvenciáját gyakorlatilag csak a párhuzamos LC tag határozza meg. Ha ismerjük a kondenzátor értékét, akkor a tekercs értéke könnyen számítható ha megmérjük a frekvenciát.
+
+$f=\frac{1}{2\pi\sqrt{LC}}\implies L=\frac{1}{4\pi^2f^2C}$
+
+![]({{imgpath}}/tekercsmeres.jpg)
+
+(itt pedig impulzusválaszt és másodrendű rendszert látok, brrr Jelek...)
+
+## konstrukció
+
+Dead-bug stílusban építettem egy darab NYÁK-ra, amire szigetszerűen kisebb NYÁK darabokat ragasztottam. Meg kell jegyezzem, a ragasztópisztoly alkalmazása itt nem volt jó ötlet, simán felválik, valami erősebb (pl. pillanatragasztó, esetleg Technokol) jobb lenne.
+
+![]({{imgpath}}/konstrukcio.jpg)
