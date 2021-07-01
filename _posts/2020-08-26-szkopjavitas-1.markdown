@@ -109,4 +109,4 @@ Rámérve a tranzisztorra meg kell állapítsam hogy totál KO. Átment rövidz�
 
 Mára viszont ebből ennyi elég, még majd apával megnézetem, hátha neki van ötlete hogy hogyan lehetne azt ott kicserélni...
 
-**Folytatása várható...**
+[Következő rész]({% link _posts/2020-08-27-szkopjavitas-2.markdown %})
