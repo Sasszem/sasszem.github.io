@@ -143,4 +143,4 @@ Mindenesetre összecsomagoltam az egészet, és félreraktam, hogy majd később
 
 Ezt a darab drótot pedig az egész közepén találtam csak úgy odaejtve, úgyhogy csoda hogy nem csinált bajt. Az eredete számomra ismeretlen, bár rémlik hogy régebben mintha a bal panelen levő csőfoglalathoz mintha tartozott volna valami ilyesmi - de akkor meg azt nem értem hogy hogy jött le róla...
 
-**Folyt. köv!**
+[Következő rész]({% link _posts/2021-06-16-szkopjavitas-3.markdown %})
