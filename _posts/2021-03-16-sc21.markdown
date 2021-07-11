@@ -1,0 +1,59 @@
+---
+title: "Sc21 writeups"
+layout: post
+category: prog
+---
+
+
+There are my writeups on the SecChallenge 2021 challenges
+
+I did not directly include any flags (except for Gates, sort of).
+
+## Crypto
+- [Monoalphabetic MadMax](/sc21/crypto/monoalphabetic)
+- [Stateless](/sc21/crypto/stateless)
+- [Variable length mtp](/sc21/crypto/variable)
+- [Prerecorded](/sc21/crypto/prerecorded)
+- [Oracle](/sc21/crypto/oracle)
+
+## Hardware
+- [Escape the chains](/sc21/hw/chains)
+- [The gates of Valhalla](/sc21/hw/gates)
+- [A safe place](/sc21/hw/safe)
+- [Crystal from the past](/sc21/hw/crystal)
+- [SPIcy information](/sc21/hw/spi)
+
+## Web
+- [SQpLosIon](/sc21/web/sql)
+- [Manual for the apocalypse](/sc21/web/manual)
+- [Poison for tomorrow](/sc21/web/poison)
+- [Until the end](/sc21/web/until_the_end)
+- [Jinja ninja](/sc21/web/jinja)
+
+## Reverse
+- [SerialHacker](/sc21/reverse/serial)
+- [Xenia Laurencia Maria](/sc21/reverse/excel)
+- [:)](/sc21/reverse/smiley)
+- [Celestial Yarr Harr Harr](/sc21/reverse/yarr)
+- [JuniorPK](/sc21/reverse/jpk) (did not solve)
+
+## Pwn
+- [c0pydump](/sc21/pwn/copy)
+- [Guidance to Salvation](/sc21/pwn/salvation)
+- `KUVID21` (could not solve)
+- `Roguelike` (could not solve)
+- [Conundrum at El Nit Patroon Rico](/sc21/pwn/me)
+
+## Misc
+- [キーボード・レイアウト](/sc21/misc/keyboard)
+- `I use arch btw` (could not solve)
+- [Little Mix](/sc21/misc/mix)
+- [TBD](/sc21/misc/tbd)
+- `Lost & Found` (could not solve)
+
+## Sanity Check
+- flag was on discord
+- it was `legend++`
+
+## Feedback form
+- worth no points

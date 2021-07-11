@@ -1,0 +1,22 @@
+namespace me;
+
+table Chunk {
+    data:[uint8];
+}
+
+table File {
+    name:string;
+    totalSize:uint64;
+    signed:bool;
+    chunks:[Chunk];
+}
+
+table FwHeader {
+    fwVerMajor:short = 1;
+    fwVerMinor:short = 1;
+    fwVerSubminor:short = 1;
+    files:[File];
+}
+
+file_identifier "MEFW";
+root_type FwHeader;
