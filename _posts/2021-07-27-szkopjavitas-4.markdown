@@ -128,7 +128,7 @@ Végül nem is kellett rajta javítani, a `P823`-as potméter beállítása meg 
 
 Persze ahhoz hogy a potihoz hozzáférjek, megint az oldalára kellett fektetni.
 
-![](cso.jpg)
+![]({{imgpath}}/cso.jpg)
 
 Hát ez viszont elég veszélyes mellékhatás! Elektroncsövet fejjel lefelé? A végén még kipotyognak az elektronok, aztán söpörhetem őket össze!
 
