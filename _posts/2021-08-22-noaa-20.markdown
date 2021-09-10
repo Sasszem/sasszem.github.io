@@ -1,0 +1,169 @@
+---
+layout: post
+title: "NOAA műholdvétel 2.0"
+category: elektro
+---
+
+{% include latex.html %}
+
+{% include imgpath.md %}
+
+Majdnem pontosan egy évvel ezelőtt építettem egy antennát és töltöttem le vele egy képet az egyik időjárási műholdról. Azóta nem nagyon volt olyan alkalom, hogy az idő-kedv-energia hármasból mindenem meglegyen erre a projektre, de végül csak visszajutottam ide.
+
+# A korábbi felszerelés
+
+A tavalyi felszerelés viszonylag egyszerű volt, egy körpolarizált `double cross dipole` antenna és egy `RTL-SDR Blog v3` rádióvevő - gyakorlatilag az "alapfelszerelés", amit nagyon sokan használtak már erre a célra. Beiktattam még egy kínai `LNA`-t is, hogy erősítse a jelet, mivel nagyon gyenge volt a vételem, viszont ez valószínűleg túlvezérlődött és ez ártott a jel integritásának. Mivel összesen egy képet töltöttem akkor le, így nem vagyok már benne utólag biztos.
+
+![kép](/assets/images/2020-07-01-noaa/sharp.jpg/sharp.jpg)
+
+# Újítás #1 - sávszűrő
+
+A vételt jelentősen javíthatja ha kiszűrjük szelektíven a venni kívánt jelet, és csak ezt erősítjük, főleg ha valami más frekvencián valamilyen helyi (földi) adó jóval erősebben fogható, mert az még tovább erősítve könnyen túlvezérelhetné az egész rendszert. Ezért szinte minden rádióvevő bemenetén van egy sáváteresztő (`band-pass filter, BPF`) szűrő. Az enyémen viszont még nem volt ilyen, tehát érdemesnek tűnt beszerezni egyet.
+
+Ilyen szűrő [kapható készen is](https://www.jghitechnology.com/gb/band-pass/23-pass-band-filter-noaa-137-MHz.html), de hobbi célra sokkal jobban megéri építeni - [erről is sok leírást találhatunk.](http://lna4all.blogspot.com/2015/11/diy-137-mhz-wx-sat-bp-filter.html). (Nyilvánvalóan nem könnyű házilag olyan jót építeni mint egy kereskedelmi, de azért hasznos így is.) Ezen filterekkel viszont probléma, hogy be kell őket hangolni, amihez megfelelő eszközök, például egy spektrumanalizátor szükséges, amikkel viszont én nem rendelkezem (bár tervben van egy `NanoVNA` beszerzése). Beállítás nélkül a szűrő lehet, hogy többet ront mint használ, így nem biztos, hogy megéri kísérletezni.
+
+Nem is tudom, hogyan jutottam el a koaxkábelből való szűrőépítés gondolatához, de úgy emlékszem, hogy saját ötlet volt. Ha léteznek elosztott elemű, például `microstrip` szűrők ([amelyek néha igen szépek](https://commons.wikimedia.org/wiki/File:Microstrip_Low_Pass_Bowtie_Stub_Filter.jpg)), de még inkább tápvonalcsonkból kialakított szűrők, miért ne lehetne őket koaxkábellel kivitelezni kisebb frekvenciákon?
+
+Kis keresgélés után rátaláltam a `"coaxial stub notch filter"`-re, [azt hiszem ezen az oldalon](http://dl4xav.sysve.de/coax.filter/coax-filter.html). A legtöbb ilyen verzió [a negyedhullámú tápvonalak impedanciainvertáló hatásán](https://en.wikipedia.org/wiki/Quarter-wave_impedance_transformer) alapul, és úgy rémlik, hogy az én eredeti ötletem is pont ez volt. Ezeknek kisebb hibája, hogy az egész számú többszörös frekvenciákon közel ugyan úgy működnek mint a célfrekvencián, de ez már viszonylag könnyen megoldható, de az sem biztos, hogy egyáltalán zavaró.
+
+Végül azonban egy másik szűrő ötlete tetszett meg, amely kicsit eltérő elven működik. Szinte véletlenül találtam [Zack Lau "A No-Tune 2-Meter Bandpass Filter" c. cikkére](https://manualzz.com/doc/32013572/a-no-tune-2-meter-bandpass-filter), amely a műhold adásával "szomszédos" kétméteres amatőrsávra tervezett koaxkábelből sávszűrőt. Egy félhullámú tápvonal két végét rövidre zárva a tápvonalon állóhullám alakulhat ki, így az egész rendszer rezonátorként működik. A kötelező könnyű be- és kicsatolást viszonyag könnyű itt megoldani, illetve a cikk két rezonátort is használt az áramkörben, hogy javítsa a szelektivitást.
+
+(Ez a módszer ugyanúgy rendelkezik a többszörös frekvenciák problémájával, de igazándiból nem zavaró.)
+
+Nosza vettem hát pár méter koaxot, azután átszámoltam a szűrő fizikai méreteit az általam használt `137-138MHz`-es frekvenciára amin a `NOAA-15`, `NOAA-18` és `NOAA-19`-es műholdak adnak, (mást nem is változtattam), majd megépítettem a szűrőt.
+
+(persze, amit itt két mondatba leírok az minimum egy hét volt, különféle okokból)
+
+![]({{imgpath}}/filter.jpg)
+
+Hogy működik-e? Passz!
+(illetve azért valamit csak sejtek...)
+
+## Szűrőmérés zajgenerátorral
+
+Kicsit kifejteném, hogy miből is áll egy szűrő bemérése vagy hangolása.
+
+Szűrőt mérni elvileg egyszerű: a bemenetre rákapcsolunk egy adott frekvenciájú jelet, a kimenetet meg figyeljük, hogy mekkora amplitúdóval kapjuk vissza. Minket viszont nem csak egyetlen adatpont érdekel, hanem egy grafikon, illetve annak egy része, amit egészen jól lehet közelíteni úgy, hogy sok frekvencián megmérjük, és a pontokat "papíron" összekötjük. Hogy ki csinálja így? Nem tudom, de hogy kézzel senki az biztos.
+
+Ha van egy `"tracking generator"`-al felszerelt spektrumanalizátorunk, az analóg vagy digitális módon meg tudja ezt nekünk csinálni. Ha van. De sajnos itthon egy darab sincs.
+
+Jó, akkor még mindig van C-terv: ha van sima spektrumanalizátorunk, akkor nem kell más, mint egy szélessávú (fehér)zajgenerátor, ami az összes minket érdeklő frekvencián közel azonos amplitúdójú zajt csinál, és ezzel majdnem ugyanúgy kimérhetjük a szűrőnket. Ilyen zajgenerátort papíron viszonylag egyszerű is építeni.
+
+Még mindig kell azonban egy spektrumanalizátor. Ezt is lehet házilag építeni, hiszen *elvileg* egy "sima" duplakonverziós szuperheterodin rádióvevő az egész, széles sávban hangolható oszcillátorral. Ráadásul nemrégiben hallgattam meg egy erről szóló továbbképzés nagy részét, szóval az elmélet megvan, elő a forrasztópákát!
+
+Na inkább ne, kell a francnak egy side projekthez side projekt, ráadásul ekkora, amire akkor is minimum évek mennének el ha amúgy értenék hozzá, és a megfelelő műszerpark is a rendelkezésemre állna. "Sajnos" a következő pár évre már van programom így a spektrumanalizátor-építés halasztást szenved.
+
+### Királyi (és nem is túl drága) út
+
+Ha lenne egy `(Nano)VNA`-m, akkor a szűrőt simán bekötve a ki- és bemenete közé, már csak a frekvenciahatárokat kéne beállítani és ő kirajzolná nekem a szűrőkarakterisztikát, hiszen pont az ilyesmire találták ki. `NanoVNA`-m még nincs, de rajta van a listán, ahhoz képest amit tud nem is túl drága műszer.
+
+### Spektrumanalizátor FFT-vel
+
+Viszont a zseniális amatőrök ismét lecsaptak. Az `RTL-SDR` ugyanis, mint észrevették, nem más, mint egy szuperheterodin rádióvevő széles sávban hangolható oszcillátorral. Ha nem is tökéletesen, de helyettesíthet egy spektrumanalizátort! (elég csak a szokásos waterfall ábrára gondolni, éppen azt csinálja ott is). Probléma viszont, hogy a sávszélessége kicsi, egyszerre a képernyőn csak viszonylag kis részét látjuk az egész spektrumnak. Persze sok kis részből szépen össze is rakhatunk egy szélesebb spektrumot. Korábban azt hittem, hogy ez az olcsó-és-vacak megoldás, viszont a *Szombathy Csaba* által a `HA5KFU`-nak tartott továbbképzés második alkalmának végére pont ezt a megoldást hozta ki, mint a jelenlegi legeslegjobb megoldást.
+
+> - (Én) És hol a csapda?
+> - (Csaba) Nincs csapda!
+
+(Persze azért az `RTL-SDR` még mindig egy párezer forintos vacak, és egy rendesebb specanal jóval több keverőfokozatot tartalmaz, de az elv azért eléggé hasonlít ahhoz amit a nagyok is művelnek.)
+
+Erre létezik több kész program is, például az `RTLSDR-scanner` (5 éve elhagyatott projekt, nem bírtam elindítani sem), a `SATSAGEN` (képet lásd lentebb), vagy a `pavels/spektrum` (képet szintén lentebb). Utóbbi kettővel egész jó sikerem volt, bár nem triviális a kezelésük és számszerű mérést sem sikerült velük végeznem.
+
+![]({{imgpath}}/satsagen.jpg)
+
+![]({{imgpath}}/spektrum.jpg)
+
+### Zajgenerátor
+
+A fehérzaj-generátort simán koppintottam [egy cikkből](http://thomas-messmer.com/index.php/14-free-knowledge/howtos/91-simple-137-mhz-bp-filter-and-noise-source-analysed-with-rtl-sdr-dongle), ha már ők is hasonlóan szerezték. "The gift that keeps on giving", és ez azért valamivel jobb mint a radioaktivitás...
+
+![]({{imgpath}}/noisegen.jpg)
+
+### Mérések
+
+A `pavels/spektrum`-mal "relatív mód"ban elég könnyen mérhető a szűrő, de a diagram nem túl meggyőző számomra:
+
+![]({{imgpath}}/filter_spektrum.png)
+
+A `SATSAGEN`-ben nem találtam hasonló beállítást, viszont az adatok CSV-be exportálhatók, amit már tovább lehet elemezni pl. `Jupyter`-el:
+
+![]({{imgpath}}/filter_satsagen.png)
+
+Egyszóval elég érdekes, meg nem tudom mondani, hogy mennyit ér, de ránézésre `100 MHz` körül, ahol a viszonylag nagy teljesítményű műsorszóró FM adók vannak nem túl nagy a csillapítása.
+
+# Újítás #2 - anti-Kossuth filter
+
+Hogy mégis legyen némi csillapítás a műsorszóró FM adók sávjában, rászereltem még az antennára egy negyedhullámú tápvonalcsonkot is (a korábban említett `notch filter`). Nem vagyok benne teljesen biztos, hogy ahová felszereltem az megfelelő hely neki (a négy részantenna találkozási pontjára került közvetlenül), kimérni pedig abszolút nem tudom, viszont érezhetően elnyomta az FM adók vételét, így ha a műholdjelnek nem árt akkor jól sikerült.
+
+[Egy szemléletes videó a negyedhullámú tápvonalcsonk működéséről.](https://www.youtube.com/watch?v=l9YN6bPkdq8)
+
+(persze így is viszonylag tisztán vehetők az FM adók, baromi erősek, de azért csak sikerült lentebb nyomni őket)
+
+Hogy ténylegesen mennyit ér az egész elrendezés, tervezem kimérni, ehhez egy `VNA`-t (vector network analyzer) tervezek beszerezni és használni, de ez még a jövő zenéje.
+
+# Újítás #3 - rakjuk magasabbra azt az antennát
+
+Az előző módosításokkal már elég jó szerencsém volt az épületek között fejmagasságban elhelyezett antennával is, a később látható képek egy része is így készült, de azóta apával egy kicsit fentebb raktuk az antennát, így már a háztetőkkel van egy szintben, ami mintha javította volna valamelyest a vételt amikor kisebb szögben látszik a műhold, hiszen kevésbé takarják el azt a házak.
+
+![]({{imgpath}}/pole.jpg)
+
+# Pitty pitty pitty
+
+A kép vétele amúgy nem is olyan bonyolult, rá kell állni a rádióval (pl. `SDR#` programmal) a frekvencia környékére mielőtt jön a műhold (az időpontokat előre ki lehet számolni több programmal is), majd amikor látunk egy erősödő jelet, rá kell állni és a keskenysávú FM adást demodulálni, a kapott hangot pedig lementeni. Ebből több program is elő tud állítani képeket, én most a [noaa-apt 1.3.0](https://noaa-apt.mbernardi.com.ar/)-t használtam.
+
+A köztes hangfájl (08.22. 9:48-as `NOAA-18` adás) egy részlete:
+
+<audio
+    controls
+    src="{{imgpath}}/record.mp3">
+        Your browser does not support the
+        <code>audio</code> element.
+</audio>
+
+Igen kellemes ezt hallgatni percekig, de elég jól hallani benne ha esetleg zajos lenne. Ez a részlet kb. a kép közepének felel meg, nem túl zajos, jó volt a vétel. A teljes fájlt nem teszem fel, de ha valaki mindenáron végig akarja hallgatni a pittyegést akkor el tudom neki küldeni.
+
+# Na és a képek
+
+Csak egy pár kép a szebben sikerültek közül. Megjegyzem, hogy a NOAA műholdak fekete-fehér képeket küldenek (legalábbis ezen a frekvencián), viszont a dekódolóprogramok általában képesek hamis színeket hozzáadni, és az összes színes kép így készült.
+
+Minden kép két képből áll, ezek általában:
+- hosszúhullámú infravörös
+- közel látható VAGY
+- középhullámú infravörös
+
+Utóbbi kettő váltja egymást attól függően hogy a nap éppen megvilágítja-e az adott területet.
+
+Nem mindig triviális felismerni hogy pontosan mit ábrázol a kép, még annak sem aki jó volt földrajzból, de azért találunk ismerős részeket. Az biztos hogy mindegyik a "környéket" ábrázolja (kb. $4 \frac{km}{px}$ felbontással), mivel ebben a módban a műhold nem tárolja a képet, mindig azt küldi le amit éppen lát.
+
+## 08.18 17:57: NOAA-18
+
+A legelső kép a javított felszereléssel (itt az antenna még kb. fejmagasságban volt). A "vágás" oka, hogy az adás közepén állítottam a vételi paramétereket (többek között az erősítést).
+
+![]({{imgpath}}/08_18_17_57_noaa18.png)
+
+![]({{imgpath}}/08_18_17_57_noaa18_col.png)
+
+## 08.18 18:04: NOAA-19
+
+Az előző adás és ez az adás átfedték egymást, erre a műholdra csak akkor álltam át amikor az előző jel gyenge volt, így itt csak az adás végét csíptem el.
+
+![]({{imgpath}}/08_18_18_04_noaa19_partial.png)
+
+![]({{imgpath}}/08_18_18_04_noaa19_partial_col.png)
+
+## 08.22 07:22: NOAA-19
+
+Pár nap szünet, nyaralás és egyebek után folytattam:
+
+![]({{imgpath}}/08_22_7h_22_noaa19.png)
+
+## 08.22 08:07: NOAA-18
+
+![]({{imgpath}}/08_22_8h_08_noaa18.png)
+
+![]({{imgpath}}/08_22_8h_08_noaa18_col.png)
+
+## 08.22 09:48: NOAA-18
+
+![]({{imgpath}}/08_22_9h_48_noaa18.png)
+
+![]({{imgpath}}/08_22_9h_48_noaa18_col.png)
