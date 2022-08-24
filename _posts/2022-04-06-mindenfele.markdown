@@ -138,7 +138,7 @@ Az egyik általam generált kép előnézete:
 
 # Fast Fourier Transform kiselőadás - 2022 január
 
-A tavaszi féléves "Jelek és rendszerek 2" tárgyhoz extra pontokért [készítettem egy kiselőadást]({{imgpath}}/linresprezi.pptx) az FFT algoritmusról. Nem nagyon extra, amit kiemelnék az a 6. dia szemléletes ábrája (wikipédia "Spectral Leakage" c. cikkében volt egy majdnem pont ilyen, amihez octave kódot is mellékeltek), illetve a 10. dia ábrája, amit a rekurziómentes algoritmus szemléltetéséhez készítettem.
+A tavaszi féléves "Jelek és rendszerek 2" tárgyhoz extra pontokért [készítettem egy kiselőadást]({{imgpath}}/FFTprezi.pptx) az FFT algoritmusról. Nem nagyon extra, amit kiemelnék az a 6. dia szemléletes ábrája (wikipédia "Spectral Leakage" c. cikkében volt egy majdnem pont ilyen, amihez octave kódot is mellékeltek), illetve a 10. dia ábrája, amit a rekurziómentes algoritmus szemléltetéséhez készítettem.
 
 Felhasználtam továbbá a prezentációban pár animációt amit a korábban említett animációkészítő programommal csináltam.
 
